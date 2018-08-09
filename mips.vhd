@@ -86,8 +86,12 @@ architecture multicycle of mips is
     signal PCSrc        : STD_LOGIC_VECTOR(1 downto 0);
     signal Branch       : STD_LOGIC;
     signal PCWrite      : STD_LOGIC;
+    
+    signal CLK_n        : STD_LOGIC;
 
 begin
+    CLK_n <= NOT CLK;
+    
     ctrl: control_unit port map (
         CLK         => CLK,
         RST         => RST,
@@ -109,7 +113,7 @@ begin
     );
     
     dpt: datapath port map (
-        CLK         => CLK,
+        CLK         => CLK_n,
         RST         => RST,
         ReadData    => ReadData,
         WriteData   => WriteData,
