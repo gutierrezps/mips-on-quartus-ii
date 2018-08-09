@@ -114,9 +114,9 @@ architecture multicycle of datapath is
     signal Instr, Data      : STD_LOGIC_VECTOR(31 downto 0);
     signal RegA3            : STD_LOGIC_VECTOR( 4 downto 0);
     signal RegWD3           : STD_LOGIC_VECTOR(31 downto 0);
-    signal RegD1, RegD2     : STD_LOGIC_VECTOR(31 downto 0);
     signal RegA, RegB       : STD_LOGIC_VECTOR(31 downto 0);
-    signal Imm, ImmSL2      : STD_LOGIC_VECTOR(31 downto 0);
+    signal SignImm          : STD_LOGIC_VECTOR(31 downto 0);
+    signal SignImmSL2       : STD_LOGIC_VECTOR(31 downto 0);
     signal SrcA, SrcB       : STD_LOGIC_VECTOR(31 downto 0);
     signal ALUResult        : STD_LOGIC_VECTOR(31 downto 0);
     signal ALUOut, PCJump   : STD_LOGIC_VECTOR(31 downto 0);
@@ -126,63 +126,89 @@ architecture multicycle of datapath is
 begin
 
     instrReg: dpt_reg port map (
-        CLK, RST, IRWrite, ReadData, Instr
+        CLK => CLK,
+        RST => RST,
+        EN  => IRWrite,
+        D   => ReadData,
+        Q   => Instr
     );
 
     dataReg: dpt_reg port map (
-        CLK, RST, '1', ReadData, Data
+        CLK => CLK,
+        RST => RST,
+        EN  => '1',
+        D   => ReadData,
+        Q   => Data
     );
 
     Opcode <= Instr(31 downto 26);
     Funct  <= Instr( 5 downto 0);
 
     regA3Mux: dpt_mux2_5b port map (
-        Instr(20 downto 16), Instr(15 downto 11), RegDst, RegA3
+        D0  => Instr(20 downto 16),
+        D1  => Instr(15 downto 11),
+        Sel => RegDst,
+        Y   => RegA3
     );
 
     regWD3Mux: dpt_mux2 port map (
-        ALUOut, Data, MemToReg, RegWD3
+        D0  => ALUOut,
+        D1  => Data,
+        Sel => MemToReg,
+        Y   => RegWD3
     );
 
     regFile: dpt_regfile port map (
-        CLK, RegWrite,
-        Instr(25 downto 21), Instr(20 downto 16), RegA3, -- A1, A2, A3
-        RegWD3, RegD1, RegD2
-    );
-
-    rd1Reg: dpt_reg port map (
-        CLK, RST, '1', RegD1, RegA
-    );
-
-    rd2Reg: dpt_reg port map (
-        CLK, RST, '1', RegD2, RegB
+        CLK => CLK,
+        A1  => Instr(25 downto 21),
+        A2  => Instr(20 downto 16),
+        A3  => RegA3,
+        WE3 => RegWrite,
+        WD3 => RegWD3,
+        RD1 => RegA,
+        RD2 => RegB
     );
 
     WriteData <= RegB;
 
     signExt: dpt_signext port map (
-        Instr(15 downto 0), Imm
+        Instr(15 downto 0), SignImm
     );
 
     immShift2: dpt_sl2 port map (
-        Imm, ImmSL2
+        SignImm, SignImmSL2
     );
 
     srcAMux: dpt_mux2 port map (
-        PC, RegA, ALUSrcA, SrcA
+        D0  => PC,
+        D1  => RegA,
+        Sel => ALUSrcA,
+        Y   => SrcA
     );
 
     srcBMux: dpt_mux4 port map (
-        RegB, X"00000004", Imm, ImmSL2,
-        ALUSrcB, SrcB
+        D0  => RegB,
+        D1  => X"00000004",
+        D2  => SignImm,
+        D3  => SignImmSL2,
+        Sel => ALUSrcB,
+        Y   => SrcB
     );
 
     alu: dpt_alu port map (
-        SrcA, SrcB, ALUControl, ALUResult, ALUZero
+        A    => SrcA,
+        B    => SrcB,
+        Ctrl => ALUControl,
+        Res  => ALUResult,
+        Zero => ALUZero
     );
 
     aluReg: dpt_reg port map (
-        CLK, RST, '1', ALUResult, ALUOut
+        CLK => CLK,
+        RST => RST,
+        EN  => '1',
+        D   => ALUResult,
+        Q   => ALUOut
     );
 
     pcShift2: dpt_pcsl2 port map (
@@ -192,18 +218,29 @@ begin
     PCJump(31 downto 28) <= PC(31 downto 28);
 
     pcMux: dpt_mux4 port map (
-        ALUResult, ALUOut, PCJump, X"00000000",
-        PCSrc, PCNext
+        D0  => ALUResult,
+        D1  => ALUOut,
+        D2  => PCJump,
+        D3  => X"00000000",
+        Sel => PCSrc,
+        Y   => PCNext
     );
 
     PCEn <= PCWrite or (Branch and ALUZero);
 
     pcReg: dpt_reg port map (
-        CLK, RST, PCEn, PCNext, PC
+        CLK => CLK,
+        RST => RST,
+        EN  => PCEn,
+        D   => PCNext,
+        Q   => PC
     );
 
     memAdrMux: dpt_mux2 port map (
-        PC, ALUOut, IorD, MemAddr
+        D0  => PC,
+        D1  => ALUOut,
+        Sel => IorD,
+        Y   => MemAddr
     );
 
 end multicycle;

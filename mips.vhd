@@ -89,16 +89,43 @@ architecture multicycle of mips is
 
 begin
     ctrl: control_unit port map (
-        CLK, RST, MemWrite, Opcode, Funct,
-        IorD, IRWrite, RegDst, MemToReg,
-        RegWrite, ALUSrcA, ALUSrcB, ALUControl,
-        PCSrc, Branch, PCWrite, CtrlState
+        CLK         => CLK,
+        RST         => RST,
+        MemWrite    => MemWrite,
+        Opcode      => Opcode,
+        Funct       => Funct,
+        IorD        => IorD,
+        IRWrite     => IRWrite,
+        RegDst      => RegDst,
+        MemToReg    => MemToReg,
+        RegWrite    => RegWrite,
+        ALUSrcA     => ALUSrcA,
+        ALUSrcB     => ALUSrcB,
+        ALUControl  => ALUControl,
+        PCSrc       => PCSrc,
+        Branch      => Branch,
+        PCWrite     => PCWrite,
+        State       => CtrlState
     );
     
     dpt: datapath port map (
-        CLK, RST, ReadData, WriteData, MemAddr,
-        Opcode, Funct, IorD, IRWrite, RegDst,
-        MemToReg, RegWrite, ALUSrcA, ALUSrcB, ALUControl,
-        PCSrc, Branch, PCWrite
+        CLK         => CLK,
+        RST         => RST,
+        ReadData    => ReadData,
+        WriteData   => WriteData,
+        MemAddr     => MemAddr,
+        Opcode      => Opcode,
+        Funct       => Funct,
+        IorD        => IorD,
+        IRWrite     => IRWrite,
+        RegDst      => RegDst,
+        MemToReg    => MemToReg,
+        RegWrite    => RegWrite,
+        ALUSrcA     => ALUSrcA,
+        ALUSrcB     => ALUSrcB,
+        ALUControl  => ALUControl,
+        PCSrc       => PCSrc,
+        Branch      => Branch,
+        PCWrite     => PCWrite
     );
 end multicycle;

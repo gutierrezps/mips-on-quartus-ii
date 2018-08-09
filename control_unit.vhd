@@ -41,9 +41,7 @@ architecture multicycle of control_unit is
     port (
         CLK     : in  STD_LOGIC;
         RST     : in  STD_LOGIC;
-
         Opcode  : in  STD_LOGIC_VECTOR(5 downto 0);
-
         IorD    : out STD_LOGIC;
         IRWrite : out STD_LOGIC;
         RegDst  : out STD_LOGIC;
@@ -52,13 +50,10 @@ architecture multicycle of control_unit is
         ALUSrcA : out STD_LOGIC;
         ALUSrcB : out STD_LOGIC_VECTOR(1 downto 0);
         ALUOp   : out STD_LOGIC_VECTOR(1 downto 0);
-
         PCSrc   : out STD_LOGIC_VECTOR(1 downto 0);
         PCWrite : out STD_LOGIC;
         Branch  : out STD_LOGIC;
-        
         MemWrite: out STD_LOGIC;
-
         State   : out STD_LOGIC_VECTOR(3 downto 0)
     );
     end component;
@@ -75,12 +70,27 @@ architecture multicycle of control_unit is
 
 begin
     fsm: ctrl_fsm port map (
-        CLK, RST, Opcode, IorD, IRWrite, RegDst,
-        MemtoReg, RegWrite, ALUSrcA, ALUSrcB, ALUOp,
-        PCSrc, PCWrite, Branch, MemWrite, State
+        CLK         => CLK,
+        RST         => RST,
+        Opcode      => Opcode,
+        IorD        => IorD,
+        IRWrite     => IRWrite,
+        RegDst      => RegDst,
+        MemtoReg    => MemtoReg,
+        RegWrite    => RegWrite,
+        ALUSrcA     => ALUSrcA,
+        ALUSrcB     => ALUSrcB,
+        ALUOp       => ALUOp,
+        PCSrc       => PCSrc,
+        PCWrite     => PCWrite,
+        Branch      => Branch,
+        MemWrite    => MemWrite,
+        State       => State
     );
 
     aludec: ctrl_aludec port map (
-        Funct, ALUOp, ALUControl
+        Funct       => Funct,
+        ALUOp       => ALUOp,
+        ALUControl  => ALUControl
     );
 end multicycle;
