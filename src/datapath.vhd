@@ -47,19 +47,15 @@ architecture multicycle of datapath is
     );
     end component;
 
-    component dpt_mux2_5b
-    port (
-        D0, D1  : in  STD_LOGIC_VECTOR(4 downto 0);
-        sel     : in  STD_LOGIC;
-        Y       : out STD_LOGIC_VECTOR(4 downto 0)
+    component mux2_width
+    generic (
+        g_WIDTH : integer := 32
     );
-    end component;
-
-    component dpt_mux2
     port (
-        D0, D1  : in  STD_LOGIC_VECTOR(31 downto 0);
-        Sel     : in  STD_LOGIC;
-        Y       : out STD_LOGIC_VECTOR(31 downto 0)
+        i_data0 : in  std_logic_vector(g_WIDTH-1 downto 0);
+        i_data1 : in  std_logic_vector(g_WIDTH-1 downto 0);
+        i_sel   : in  std_logic;
+        o_data  : out std_logic_vector(g_WIDTH-1 downto 0)
     );
     end component;
 
@@ -144,18 +140,21 @@ begin
     Opcode <= Instr(31 downto 26);
     Funct  <= Instr( 5 downto 0);
 
-    regA3Mux: dpt_mux2_5b port map (
-        D0  => Instr(20 downto 16),
-        D1  => Instr(15 downto 11),
-        Sel => RegDst,
-        Y   => RegA3
+    regA3Mux: mux2_width
+    generic map (g_WIDTH => 5)
+    port map (
+        i_data0 => Instr(20 downto 16),
+        i_data1 => Instr(15 downto 11),
+        i_sel   => RegDst,
+        o_data  => RegA3
     );
 
-    regWD3Mux: dpt_mux2 port map (
-        D0  => ALUOut,
-        D1  => Data,
-        Sel => MemToReg,
-        Y   => RegWD3
+    regWD3Mux: mux2_width
+    port map (
+        i_data0 => ALUOut,
+        i_data1 => Data,
+        i_sel   => MemToReg,
+        o_data  => RegWD3
     );
 
     regFile: dpt_regfile port map (
@@ -179,11 +178,12 @@ begin
         SignImm, SignImmSL2
     );
 
-    srcAMux: dpt_mux2 port map (
-        D0  => PC,
-        D1  => RegA,
-        Sel => ALUSrcA,
-        Y   => SrcA
+    srcAMux: mux2_width
+    port map (
+        i_data0 => PC,
+        i_data1 => RegA,
+        i_sel   => ALUSrcA,
+        o_data  => SrcA
     );
 
     srcBMux: dpt_mux4 port map (
@@ -236,11 +236,12 @@ begin
         Q   => PC
     );
 
-    memAdrMux: dpt_mux2 port map (
-        D0  => PC,
-        D1  => ALUOut,
-        Sel => IorD,
-        Y   => MemAddr
+    memAdrMux: mux2_width
+    port map (
+        i_data0 => PC,
+        i_data1 => ALUOut,
+        i_sel   => IorD,
+        o_data  => MemAddr
     );
 
 end multicycle;

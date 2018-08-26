@@ -82,8 +82,7 @@ set_global_assignment -name VHDL_FILE src/dpt_regfile.vhd
 set_global_assignment -name VHDL_FILE src/dpt_reg.vhd
 set_global_assignment -name VHDL_FILE src/dpt_pcsl2.vhd
 set_global_assignment -name VHDL_FILE src/dpt_mux4.vhd
-set_global_assignment -name VHDL_FILE src/dpt_mux2_5b.vhd
-set_global_assignment -name VHDL_FILE src/dpt_mux2.vhd
+set_global_assignment -name VHDL_FILE src/mux2_width.vhd
 set_global_assignment -name VHDL_FILE src/dpt_alu.vhd
 set_global_assignment -name VHDL_FILE src/datapath.vhd
 set_global_assignment -name VHDL_FILE src/ctrl_fsm.vhd
