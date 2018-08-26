@@ -48,9 +48,7 @@ architecture multicycle of datapath is
     end component;
 
     component mux2_width
-    generic (
-        g_WIDTH : integer := 32
-    );
+    generic (g_WIDTH : integer := 32);
     port (
         i_data0 : in  std_logic_vector(g_WIDTH-1 downto 0);
         i_data1 : in  std_logic_vector(g_WIDTH-1 downto 0);
@@ -89,12 +87,15 @@ architecture multicycle of datapath is
     );
     end component;
 
-    component dpt_mux4
+    component mux4_width
+    generic (g_WIDTH : integer := 32);
     port (
-        D0, D1  : in  STD_LOGIC_VECTOR(31 DOWNTO 0);
-        D2, D3  : in  STD_LOGIC_VECTOR(31 DOWNTO 0);
-        Sel     : in  STD_LOGIC_VECTOR( 1 DOWNTO 0);
-        Y       : out STD_LOGIC_VECTOR(31 DOWNTO 0)
+        i_data0,
+        i_data1,
+        i_data2,
+        i_data3 : in  std_logic_vector(g_WIDTH-1 downto 0);
+        i_sel   : in  std_logic_vector(1 downto 0);
+        o_data  : out std_logic_vector(g_WIDTH-1 downto 0)
     );
     end component;
 
@@ -186,13 +187,13 @@ begin
         o_data  => SrcA
     );
 
-    srcBMux: dpt_mux4 port map (
-        D0  => RegB,
-        D1  => X"00000004",
-        D2  => SignImm,
-        D3  => SignImmSL2,
-        Sel => ALUSrcB,
-        Y   => SrcB
+    srcBMux: mux4_width port map (
+        i_data0 => RegB,
+        i_data1 => X"00000004",
+        i_data2 => SignImm,
+        i_data3 => SignImmSL2,
+        i_sel   => ALUSrcB,
+        o_data  => SrcB
     );
 
     alu: dpt_alu port map (
@@ -217,13 +218,13 @@ begin
 
     PCJump(31 downto 28) <= PC(31 downto 28);
 
-    pcMux: dpt_mux4 port map (
-        D0  => ALUResult,
-        D1  => ALUOut,
-        D2  => PCJump,
-        D3  => X"00000000",
-        Sel => PCSrc,
-        Y   => PCNext
+    pcMux: mux4_width port map (
+        i_data0 => ALUResult,
+        i_data1 => ALUOut,
+        i_data2 => PCJump,
+        i_data3 => X"00000000",
+        i_sel   => PCSrc,
+        o_data  => PCNext
     );
 
     PCEn <= PCWrite or (Branch and ALUZero);

@@ -7,19 +7,26 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity mux2_width is
+entity mux4_width is
 generic (
     g_WIDTH : integer := 32     -- Override when instantiated
 );
 port (
-    i_data0 : in  std_logic_vector(g_WIDTH-1 downto 0);
-    i_data1 : in  std_logic_vector(g_WIDTH-1 downto 0);
-    i_sel   : in  std_logic;
+    i_data0,
+    i_data1,
+    i_data2,
+    i_data3 : in  std_logic_vector(g_WIDTH-1 downto 0);
+    i_sel   : in  std_logic_vector(1 downto 0);
     o_data  : out std_logic_vector(g_WIDTH-1 downto 0)
 );
-end mux2_width;
+end mux4_width;
 
-architecture rtl of mux2_width is
+architecture rtl of mux4_width is
 begin
-    o_data <= i_data0 when i_sel = '0' else i_data1;
+    with i_sel select
+        o_data <=
+            i_data1 when "01",
+            i_data2 when "10",
+            i_data3 when "11",
+            i_data0 when others;
 end;
