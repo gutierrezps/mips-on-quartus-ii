@@ -1,9 +1,16 @@
-*.bak
+# Quartus II files and folders
 db/*
 incremental_db/*
 output_files/*
 simulation/*
+*.bak
 *.qdf
 *.temp
 *.qsf
 *.qws
+
+# ModelSim Files
+work/*
+*.wlf
+*.mti
+*.mpf
