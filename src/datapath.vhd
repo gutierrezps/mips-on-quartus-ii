@@ -36,14 +36,15 @@ port (
 );
 end datapath;
 
-architecture multicycle of datapath is
-    component dpt_reg
+architecture struct of datapath is
+    component reg_width
+    generic (g_WIDTH : integer := 32);
     port (
-        CLK : in  STD_LOGIC;
-        RST : in  STD_LOGIC;
-        EN  : in  STD_LOGIC;
-        D   : in  STD_LOGIC_VECTOR(31 downto 0);
-        Q   : out STD_LOGIC_VECTOR(31 downto 0)
+        i_clk : in  std_logic;
+        i_rst : in  std_logic;
+        i_en  : in  std_logic;
+        i_d   : in  std_logic_vector(g_WIDTH-1 downto 0);
+        o_q   : out std_logic_vector(g_WIDTH-1 downto 0)
     );
     end component;
 
@@ -120,22 +121,22 @@ architecture multicycle of datapath is
     signal PCNext, PC       : STD_LOGIC_VECTOR(31 downto 0);
     signal PCEn, ALUZero    : STD_LOGIC;
 
-begin
+begin -- architecture struct of datapath
 
-    instrReg: dpt_reg port map (
-        CLK => CLK,
-        RST => RST,
-        EN  => IRWrite,
-        D   => ReadData,
-        Q   => Instr
+    instrReg: reg_width port map (
+        i_clk   => CLK,
+        i_rst   => RST,
+        i_en    => IRWrite,
+        i_d     => ReadData,
+        o_q     => Instr
     );
 
-    dataReg: dpt_reg port map (
-        CLK => CLK,
-        RST => RST,
-        EN  => '1',
-        D   => ReadData,
-        Q   => Data
+    dataReg: reg_width port map (
+        i_clk   => CLK,
+        i_rst   => RST,
+        i_en    => '1',
+        i_d     => ReadData,
+        o_q     => Data
     );
 
     Opcode <= Instr(31 downto 26);
@@ -204,12 +205,12 @@ begin
         Zero => ALUZero
     );
 
-    aluReg: dpt_reg port map (
-        CLK => CLK,
-        RST => RST,
-        EN  => '1',
-        D   => ALUResult,
-        Q   => ALUOut
+    aluReg: reg_width port map (
+        i_clk   => CLK,
+        i_rst   => RST,
+        i_en    => '1',
+        i_d     => ALUResult,
+        o_q     => ALUOut
     );
 
     pcShift2: dpt_pcsl2 port map (
@@ -229,12 +230,12 @@ begin
 
     PCEn <= PCWrite or (Branch and ALUZero);
 
-    pcReg: dpt_reg port map (
-        CLK => CLK,
-        RST => RST,
-        EN  => PCEn,
-        D   => PCNext,
-        Q   => PC
+    pcReg: reg_width port map (
+        i_clk   => CLK,
+        i_rst   => RST,
+        i_en    => PCEn,
+        i_d     => PCNext,
+        o_q     => PC
     );
 
     memAdrMux: mux2_width
@@ -245,4 +246,4 @@ begin
         o_data  => MemAddr
     );
 
-end multicycle;
+end architecture struct;
