@@ -20,7 +20,10 @@ All software below can be downloaded for free at https://fpgasoftware.intel.com/
 Since ModelSim doesn't create project files with relative paths, you will need to create a project
 and include the files manually. See Kashani-Akhavan's tutorial, sections 4 and 5.
 
+Some testbenches were generated with the aid of Doulos' online tool.
+
 ## References
+* Doulos. *VHDL Testbench Creation Using Perl*. http://www.doulos.com/knowhow/perl/testbench_creation/
 * Harris, D., & Harris, S. (2010). *Digital Design and Computer Architecture*. Morgan Kaufmann.
 * Kashani-Akhavan, Sahand. *VHDL Testbench Tutorial*. https://moodle.epfl.ch/pluginfile.php/1833321/mod_resource/content/1/vhdl_testbench_tutorial.pdf
 * Nandland. *VHDL Tutorials and Examples*. https://www.nandland.com/vhdl/tutorials/index.html
