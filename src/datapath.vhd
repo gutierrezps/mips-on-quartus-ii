@@ -58,12 +58,15 @@ architecture struct of datapath is
     );
     end component;
 
-    component dpt_regfile
+    component regfile_width
+    generic (
+        g_WIDTH : integer := 32     -- Override when instantiated
+    );
     port (
-        CLK, WE3    : in  STD_LOGIC;
-        A1, A2, A3  : in  STD_LOGIC_VECTOR(4 downto 0);
-        WD3         : in  STD_LOGIC_VECTOR(31 downto 0);
-        RD1, RD2    : out STD_LOGIC_VECTOR(31 downto 0)
+        i_clk, i_we3    : in  std_logic;
+        i_a1, i_a2, i_a3: in  std_logic_vector(4 downto 0);
+        i_wd3           : in  std_logic_vector(g_WIDTH-1 downto 0);
+        o_rd1, o_rd2    : out std_logic_vector(g_WIDTH-1 downto 0)
     );
     end component;
 
@@ -159,15 +162,15 @@ begin -- architecture struct of datapath
         o_data  => RegWD3
     );
 
-    regFile: dpt_regfile port map (
-        CLK => CLK,
-        A1  => Instr(25 downto 21),
-        A2  => Instr(20 downto 16),
-        A3  => RegA3,
-        WE3 => RegWrite,
-        WD3 => RegWD3,
-        RD1 => RegA,
-        RD2 => RegB
+    regFile: regfile_width port map (
+        i_clk   => CLK,
+        i_a1    => Instr(25 downto 21),
+        i_a2    => Instr(20 downto 16),
+        i_a3    => RegA3,
+        i_we3   => RegWrite,
+        i_wd3   => RegWD3,
+        o_rd1   => RegA,
+        o_rd2   => RegB
     );
 
     WriteData <= RegB;
