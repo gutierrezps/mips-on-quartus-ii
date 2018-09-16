@@ -70,10 +70,14 @@ architecture struct of datapath is
     );
     end component;
 
-    component dpt_signext
+    component signext_width
+    generic (
+        g_INPUT_WIDTH   : integer := 16;
+        g_OUTPUT_WIDTH  : integer := 32
+    );
     port (
-        A: in  STD_LOGIC_VECTOR(15 DOWNTO 0);
-        Y: out STD_LOGIC_VECTOR(31 DOWNTO 0)
+        i_a: in  std_logic_vector(g_INPUT_WIDTH-1 downto 0);
+        o_y: out std_logic_vector(g_OUTPUT_WIDTH-1 downto 0)
     );
     end component;
 
@@ -170,8 +174,9 @@ begin -- architecture struct of datapath
 
     WriteData <= RegB;
 
-    signExt: dpt_signext port map (
-        Instr(15 downto 0), SignImm
+    signExt: signext_width port map (
+        i_a => Instr(15 downto 0),
+        o_y => SignImm
     );
 
     immShift2: sl2_width port map (

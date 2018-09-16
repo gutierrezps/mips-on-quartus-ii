@@ -77,7 +77,7 @@ set_global_assignment -name VHDL_FILE src/mips_test.vhd
 set_global_assignment -name VHDL_FILE src/mips_mem.vhd
 set_global_assignment -name VHDL_FILE src/mips.vhd
 set_global_assignment -name VHDL_FILE src/sl2_width.vhd
-set_global_assignment -name VHDL_FILE src/dpt_signext.vhd
+set_global_assignment -name VHDL_FILE src/signext_width.vhd
 set_global_assignment -name VHDL_FILE src/regfile_width.vhd
 set_global_assignment -name VHDL_FILE src/reg_width.vhd
 set_global_assignment -name VHDL_FILE src/mux4_width.vhd
