@@ -77,17 +77,11 @@ architecture struct of datapath is
     );
     end component;
 
-    component dpt_sl2
+    component sl2_width
+    generic (g_WIDTH : integer := 32);
     port (
-        A: in  STD_LOGIC_VECTOR(31 DOWNTO 0);
-        Y: out STD_LOGIC_VECTOR(31 DOWNTO 0)
-    );
-    end component;
-
-    component dpt_pcsl2
-    port (
-        A: in  STD_LOGIC_VECTOR(25 DOWNTO 0);
-        Y: out STD_LOGIC_VECTOR(27 DOWNTO 0)
+        i_a: in  std_logic_vector(g_WIDTH-1 downto 0);
+        o_y: out std_logic_vector(g_WIDTH-1 downto 0)
     );
     end component;
 
@@ -180,8 +174,9 @@ begin -- architecture struct of datapath
         Instr(15 downto 0), SignImm
     );
 
-    immShift2: dpt_sl2 port map (
-        SignImm, SignImmSL2
+    immShift2: sl2_width port map (
+        i_a => SignImm,
+        o_y => SignImmSL2
     );
 
     srcAMux: mux2_width
@@ -217,8 +212,11 @@ begin -- architecture struct of datapath
         o_q     => ALUOut
     );
 
-    pcShift2: dpt_pcsl2 port map (
-        Instr(25 downto 0), PCJump(27 downto 0)
+    pcShift2: sl2_width
+    generic map (g_WIDTH => 28)
+    port map (
+        i_a => "00" & Instr(25 downto 0),
+        o_y => PCJump(27 downto 0)
     );
 
     PCJump(31 downto 28) <= PC(31 downto 28);
