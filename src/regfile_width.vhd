@@ -1,3 +1,10 @@
+-- MIPS Register File (generic width), with 32 addresses
+--
+-- Address zero holds a null value (all bits low)
+-- Reading is asynchronous
+--
+-- Author: Gutierrez PS / https://github.com/gutierrezps/mips-on-quartus-ii
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
@@ -31,13 +38,13 @@ begin
 
     reading: process (i_a1, i_a2, r_registers)
     begin
-        if (i_a1 = 0) then
+        if i_a1 = 0 then
             r_d1 <= (g_WIDTH-1 downto 0 => '0');
         else
             r_d1 <= r_registers(to_integer(unsigned(i_a1)));
         end if;
 
-        if (i_a2 = 0) then
+        if i_a2 = 0 then
             r_d2 <= (g_WIDTH-1 downto 0 => '0');
         else
             r_d2 <= r_registers(to_integer(unsigned(i_a2)));
