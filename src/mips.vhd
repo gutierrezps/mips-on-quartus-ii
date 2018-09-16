@@ -50,26 +50,26 @@ architecture multicycle of mips is
     end component;
     
     component datapath
-    port (
-        CLK         : in  STD_LOGIC;
-        RST         : in  STD_LOGIC;
-        ReadData    : in  STD_LOGIC_VECTOR(31 downto 0);
-        WriteData   : out STD_LOGIC_VECTOR(31 downto 0);
-        MemAddr     : out STD_LOGIC_VECTOR(31 downto 0);
-        Opcode      : out STD_LOGIC_VECTOR( 5 downto 0);
-        Funct       : out STD_LOGIC_VECTOR( 5 downto 0);
-        IorD        : in  STD_LOGIC;
-        IRWrite     : in  STD_LOGIC;
-        RegDst      : in  STD_LOGIC;
-        MemToReg    : in  STD_LOGIC;
-        RegWrite    : in  STD_LOGIC;
-        ALUSrcA     : in  STD_LOGIC;
-        ALUSrcB     : in  STD_LOGIC_VECTOR(1 downto 0);
-        ALUControl  : in  STD_LOGIC_VECTOR(2 downto 0);
-        PCSrc       : in  STD_LOGIC_VECTOR(1 downto 0);
-        Branch      : in  STD_LOGIC;
-        PCWrite     : in  STD_LOGIC
-    );
+        port (
+            i_clk         : in  std_logic;
+            i_rst         : in  std_logic;
+            i_readData    : in  std_logic_vector(31 downto 0);
+            o_writeData   : out std_logic_vector(31 downto 0);
+            o_memAddr     : out std_logic_vector(31 downto 0);
+            o_opcode      : out std_logic_vector( 5 downto 0);
+            o_funct       : out std_logic_vector( 5 downto 0);
+            i_iOrD        : in  std_logic;
+            i_irWrite     : in  std_logic;
+            i_regDst      : in  std_logic;
+            i_memToReg    : in  std_logic;
+            i_regWrite    : in  std_logic;
+            i_aluSrcA     : in  std_logic;
+            i_aluSrcB     : in  std_logic_vector(1 downto 0);
+            i_aluControl  : in  std_logic_vector(2 downto 0);
+            i_pcSrc       : in  std_logic_vector(1 downto 0);
+            i_branch      : in  std_logic;
+            i_pcWrite     : in  std_logic
+        );
     end component;
     
     signal Opcode       : STD_LOGIC_VECTOR(5 downto 0);
@@ -113,23 +113,23 @@ begin
     );
     
     dpt: datapath port map (
-        CLK         => CLK_n,
-        RST         => RST,
-        ReadData    => ReadData,
-        WriteData   => WriteData,
-        MemAddr     => MemAddr,
-        Opcode      => Opcode,
-        Funct       => Funct,
-        IorD        => IorD,
-        IRWrite     => IRWrite,
-        RegDst      => RegDst,
-        MemToReg    => MemToReg,
-        RegWrite    => RegWrite,
-        ALUSrcA     => ALUSrcA,
-        ALUSrcB     => ALUSrcB,
-        ALUControl  => ALUControl,
-        PCSrc       => PCSrc,
-        Branch      => Branch,
-        PCWrite     => PCWrite
+        i_clk         => CLK_n,
+        i_rst         => RST,
+        i_readData    => ReadData,
+        o_writeData   => WriteData,
+        o_memAddr     => MemAddr,
+        o_opcode      => Opcode,
+        o_funct       => Funct,
+        i_iOrD        => IorD,
+        i_irWrite     => IRWrite,
+        i_regDst      => RegDst,
+        i_memToReg    => MemToReg,
+        i_regWrite    => RegWrite,
+        i_aluSrcA     => ALUSrcA,
+        i_aluSrcB     => ALUSrcB,
+        i_aluControl  => ALUControl,
+        i_pcSrc       => PCSrc,
+        i_branch      => Branch,
+        i_pcWrite     => PCWrite
     );
 end multicycle;
