@@ -103,12 +103,13 @@ architecture struct of datapath is
     );
     end component;
 
-    component dpt_alu
+    component alu_width
+    generic (g_WIDTH : integer := 32);
     port (
-        A, B    : IN  STD_LOGIC_VECTOR(31 DOWNTO 0);
-        Ctrl    : IN  STD_LOGIC_VECTOR( 2 DOWNTO 0);
-        Res     : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-        Zero    : OUT STD_LOGIC
+        i_a, i_b: in  std_logic_vector(g_WIDTH-1 downto 0);
+        i_ctrl  : in  std_logic_vector( 2 downto 0);
+        o_res   : out std_logic_vector(g_WIDTH-1 downto 0);
+        o_zero  : out std_logic
     );
     end component;
 
@@ -200,12 +201,12 @@ begin -- architecture struct of datapath
         o_data  => SrcB
     );
 
-    alu: dpt_alu port map (
-        A    => SrcA,
-        B    => SrcB,
-        Ctrl => ALUControl,
-        Res  => ALUResult,
-        Zero => ALUZero
+    alu: alu_width port map (
+        i_a    => SrcA,
+        i_b    => SrcB,
+        i_ctrl => ALUControl,
+        o_res  => ALUResult,
+        o_zero => ALUZero
     );
 
     aluReg: reg_width port map (
