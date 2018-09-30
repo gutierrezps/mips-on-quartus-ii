@@ -24,7 +24,8 @@ port (
     i_aluControl  : in  std_logic_vector(2 downto 0);
     i_pcSrc       : in  std_logic_vector(1 downto 0);
     i_branch      : in  std_logic;
-    i_pcWrite     : in  std_logic
+    i_pcWrite     : in  std_logic;
+    o_aluResult   : out std_logic_vector(31 downto 0)
 );
 end datapath;
 
@@ -256,5 +257,7 @@ begin -- architecture struct of datapath
         i_sel   => i_iOrD,
         o_data  => o_memAddr
     );
+
+    o_aluResult <= w_aluResult;
 
 end architecture struct;
