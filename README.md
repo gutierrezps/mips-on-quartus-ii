@@ -20,17 +20,15 @@ All software below can be downloaded for free at <https://fpgasoftware.intel.com
 
 ## Simulation/Testbench
 
-Since ModelSim doesn't create project files with relative paths, you will need
-to create a project and include the files manually. See Kashani-Akhavan's tutorial,
-sections 4 and 5.
+Since ModelSim doesn't create project files with relative paths, you will need to create a project and include the files manually. See Kashani-Akhavan's tutorial, sections 4 and 5.
 
-When adding files to ModelSim project, make sure the compile order is correct
-by adding first the DUT file, and then the testbench file. You can see the 
-files' order on the Project tab.
+When adding files to ModelSim project, make sure the compile order is correct by adding first the DUT file, and then the testbench file. You can see the files' order on the Project tab.
 
 ![ModelSim file order](doc/modelsim-order.png "ModelSim file order")
 
-Also set the VHDL version to 2008 (`View` > `Properties` > `VHDL` > `Use 1076-2008`).
+Set the VHDL version to 2008 (`View` > `Properties` > `VHDL` > `Use 1076-2008`).
+
+When simulating macroblocks (e.g. `datapath`, `control_unit`), make sure all its internal blocks are added to the project, otherwise it won't work.
 
 Some testbenches were generated with the aid of Doulos' online tool.
 
