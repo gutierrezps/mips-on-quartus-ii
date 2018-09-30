@@ -30,9 +30,9 @@ begin
     res_sub     <= i_a -    i_b;
     res_and     <= i_a and  i_b;
     res_or      <= i_a or   i_b;
-    res_andnot 	<= i_a and not  i_b;
-    res_ornot  	<= i_a or not   i_b;
-    res_slt	    <= "000" & X"0000000" & res_sub(g_WIDTH-1);
+    res_andnot  <= i_a and not  i_b;
+    res_ornot   <= i_a or not   i_b;
+    res_slt     <= "000" & X"0000000" & res_sub(g_WIDTH-1);
     
     with i_ctrl select
         result <=   res_and     when "000",
