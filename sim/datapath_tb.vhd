@@ -140,7 +140,7 @@ begin
         i_regWrite  <= '1';
 
         wait for c_CLOCK_PERIOD;
-
+        i_regWrite  <= '0';
 
         -- =====================================================================
         -- Instruction  addi $s1, $zero, 1
@@ -160,7 +160,31 @@ begin
         i_regWrite  <= '1';
 
         wait for c_CLOCK_PERIOD;
+        i_regWrite  <= '0';
 
+        -- =====================================================================
+        -- Instruction  add  $s2, $s0, $s1
+
+        states0and1(X"02119020", X"00000008");
+
+        -- S6: R-type execute
+        i_aluSrcA   <= '1';     -- regA
+        i_aluSrcB   <= "00";    -- regB
+        i_aluControl <= "010";  -- add
+
+        wait for c_PROP_DELAY;
+        -- writeData (regB) should be 1 (from previous instruction)
+        assert o_writeData = X"00000001" report "RegB mismatch" severity error;
+
+        wait for c_CLOCK_PERIOD - c_PROP_DELAY;
+
+        -- S7: ALU writeback
+        i_regDst    <= '1';     -- regfile A3 = rd (instruction field, $s2)
+        i_memToReg  <= '0';     -- regfile WD3 = aluOut
+        i_regWrite  <= '1';
+
+        wait for c_CLOCK_PERIOD;
+        i_regWrite  <= '0';
         
         -- End of stimulus
         r_stop_clock <= true;
