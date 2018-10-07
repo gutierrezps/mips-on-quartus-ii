@@ -185,6 +185,29 @@ begin
 
         wait for c_CLOCK_PERIOD;
         i_regWrite  <= '0';
+
+        -- =====================================================================
+        -- Instruction  sw   $s2, 2048($zero)
+
+        states0and1(X"AC120800", X"0000000C");
+
+        -- S2: mem addr calc
+        i_aluSrcA   <= '1';     -- regA
+        i_aluSrcB   <= "10";    -- immediate
+        i_aluControl <= "010";  -- add
+
+        wait for c_CLOCK_PERIOD;
+
+        -- S5: mem write
+        i_iOrD <= '1';
+        wait for c_PROP_DELAY;
+        -- addr should be 2048 (imm + reg = 2048 + 0 = 2048 = 0x800)
+        assert o_memAddr = X"00000800" report "Addr calc failed" severity error;
+        -- $s2 = $s0 + $s1 = 0x12345678 + 1 = 0x12345679
+        assert o_writeData = X"12345679" report "WriteData mismatch" severity error;
+
+        wait for c_CLOCK_PERIOD;
+
         
         -- End of stimulus
         r_stop_clock <= true;
