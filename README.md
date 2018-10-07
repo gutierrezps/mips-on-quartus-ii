@@ -34,6 +34,7 @@ Some testbenches were generated with the aid of Doulos' online tool.
 
 ## References
 
+* Alan Hogan. *MIPS Assembler*. <https://alanhogan.com/asu/assembler.php>
 * Doulos. *VHDL Testbench Creation Using Perl*. <http://www.doulos.com/knowhow/perl/testbench_creation/>
 * Harris, D., & Harris, S. (2010). *Digital Design and Computer Architecture*. Morgan Kaufmann.
 * Kashani-Akhavan, Sahand. *VHDL Testbench Tutorial*. <https://moodle.epfl.ch/pluginfile.php/1833321/mod_resource/content/1/vhdl_testbench_tutorial.pdf>
