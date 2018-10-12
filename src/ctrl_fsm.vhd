@@ -1,185 +1,158 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+-- Multicycle MIPS / Control Unit / Finite State Machine
+--
+-- Author: Gutierrez PS / https://github.com/gutierrezps/mips-on-quartus-ii
+--
+-- Based on Intel's Mealy State Machine template
+-- https://www.intel.com/content/www/us/en/programmable/support/support-resources/design-examples/design-software/vhdl/vhd-state-machine.html
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
 
 entity ctrl_fsm is
     port (
-        CLK			: in STD_LOGIC;
-        RST		: in STD_LOGIC;
-
-        Opcode		: in STD_LOGIC_VECTOR(5 downto 0);
-
-        IorD		: out STD_LOGIC;
-        IRWrite		: out STD_LOGIC;
-        RegDst		: out STD_LOGIC;
-        MemtoReg	: out STD_LOGIC;
-        RegWrite	: out STD_LOGIC;
-        ALUSrcA		: out STD_LOGIC;
-        ALUSrcB		: out STD_LOGIC_VECTOR(1 downto 0);
-        ALUOp		: out STD_LOGIC_VECTOR(1 downto 0);
-
-        PCSrc		: out STD_LOGIC_VECTOR(1 downto 0);
-        PCWrite		: out STD_LOGIC;
-        Branch		: out STD_LOGIC;
-        
-        MemWrite	: out STD_LOGIC;
-
-        State		: out STD_LOGIC_VECTOR(3 downto 0)
+        i_clk       : in std_logic;
+        i_rst       : in std_logic;
+        i_opcode    : in std_logic_vector(5 downto 0);
+        o_iOrD      : out std_logic;
+        o_irWrite   : out std_logic;
+        o_regDst    : out std_logic;
+        o_memToReg  : out std_logic;
+        o_regWrite  : out std_logic;
+        o_aluSrcA   : out std_logic;
+        o_aluSrcB   : out std_logic_vector(1 downto 0);
+        o_aluOp     : out std_logic_vector(1 downto 0);
+        o_pcSrc     : out std_logic_vector(1 downto 0);
+        o_pcWrite   : out std_logic;
+        o_branch    : out std_logic;
+        o_memWrite  : out std_logic;
+        o_state     : out std_logic_vector(3 downto 0)
     );
 end ctrl_fsm;
 
-architecture behave of ctrl_fsm is
-    signal nextState: 	STD_LOGIC_VECTOR(3 downto 0);
+architecture rtl of ctrl_fsm is
+    -- Build an enumerated type for the state machine
+    type t_stateType is (s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11);
     
+    signal r_state: t_stateType;
+    
+begin
+    states: process (i_clk, i_rst)
     begin
+        if i_rst = '1' then
+            r_state <= s0;
 
-    process(CLK) begin
-    if rising_edge(CLK) then
+        elsif (rising_edge(i_clk)) then
         
-        if RST = '1' then
-        
-            State <= "1111";
-            nextState <= "0000";
-            
-            IRWrite	<= '0';
-            PCWrite <= '0';
-            RegWrite <= '0';
-            MemWrite <= '0';
-            Branch <= '0';
-            
-        else
-        
-            State <= nextState;
-            
-            case nextState is
-            
-            -- Fetch
-            when "0000" =>
-                
-                nextState <= "0001";
-                
-                IorD <= '0';
-                ALUSrcA <= '0';
-                ALUSrcB <= "01";
-                ALUOp <= "00";
-                PCSrc <= "00";
-                IRWrite	<= '1';
-                PCWrite <= '1';
-                RegWrite <= '0';
-                MemWrite <= '0';
-                Branch <= '0';
+            case r_state is
+                when s0 => r_state <= s1;
 
-            -- Decode
-            when "0001" =>
-                PCWrite <= '0';
-                IRWrite	<= '0';
+                when s1 =>
+                    if ((i_opcode = 35 ) or (i_opcode = 43)) then
+                        r_state <= s2;
+                    elsif(i_opcode = 0) then    -- r-type
+                        r_state <= s6;
+                    elsif(i_opcode = 4) then    -- branch
+                        r_state <= s8;
+                    elsif(i_opcode = 8) then    -- addi
+                        r_state <= s9;
+                    elsif(i_opcode = 2) then    -- jump
+                        r_state <= s11;
+                    end if;
                 
-                ALUSrcA <= '0';
-                ALUSrcB <= "11";
-                ALUOp <= "00";
+                when s2 =>
+                    if(i_opcode = 35) then
+                        r_state <= s3;
+                    elsif(i_opcode = 43) then
+                        r_state <= s5;
+                    end if;
+                
+                when s3 => r_state <= s4;
+                when s4 => r_state <= s0;
+                when s5 => r_state <= s0;
+                when s6 => r_state <= s7;
+                when s7 => r_state <= s0;
+                when s8 => r_state <= s0;
+                when s9 => r_state <= s10;
+                when s10 => r_state <= s0;
+                when s11 => r_state <= s0;
             
-                if((OpCode = 35 ) OR (OpCode = 43)) then	-- LW or SW
-                    nextState <= "0010";
-                elsif(OpCode = 0) then		-- R-type
-                    nextState <= "0110";
-                elsif(OpCode = 4) then 		-- Branch
-                    nextState <= "1000";
-                elsif(OpCode = 8) then		-- Addi
-                    nextState <= "1001";
-                elsif(OpCode = 2) then		-- Jump
-                    nextState <= "1011";
-                end if;
+            end case;   -- case r_state
+        end if;     -- if rising_edge(i_clk)
+    end process states;
 
-            --MemAdr
-            when "0010" =>
-                ALUSrcA <= '1';
-                ALUSrcB <= "10";
-                ALUOp <= "00";
-                
-                if(OpCode = 35 ) then
-                    nextState <= "0011";
-                elsif(OpCode = 43) then
-                    nextState <= "0101";
-                end if;		
-            
-            --MemRead
-            when "0011" =>
-                nextState <= "0100";
-            
-                IorD <= '1';
-                
-            --Mem WriteBack
-            when "0100" =>
-                nextState <= "0000";
-                
-                RegDst <= '0';
-                MemtoReg <= '1';
-                RegWrite <= '1';
-                
-            --Mem Write				
-            when "0101" =>
-                nextState <= "0000";
-                
-                IorD <= '1';
-                MemWrite <= '1';
-                
-            --Execute	
-            when "0110" =>				
-                nextState <= "0111";
-                
-                ALUSrcA <= '1';
-                ALUSrcB <= "00";
-                ALUOp <= "10";
+    outputs: process (r_state)
+    begin
+        case r_state is
+            when s0 =>
+                o_iOrD      <= '0';
+                o_aluSrcA   <= '0';
+                o_aluSrcB   <= "01";
+                o_aluOp     <= "00";
+                o_pcSrc     <= "00";
+                o_irWrite   <= '1';
+                o_pcWrite   <= '1';
+                o_regWrite  <= '0';
+                o_memWrite  <= '0';
+                o_branch    <= '0';
 
-            -- ALU Writeback
-            when "0111" =>
-                nextState <= "0000";
-            
-                RegDst <= '1';
-                MemtoReg <= '0';
-                RegWrite <= '1';
+            when s1 =>
+                o_pcWrite   <= '0';
+                o_irWrite   <= '0';
+                o_aluSrcA   <= '0';
+                o_aluSrcB   <= "11";
+                o_aluOp     <= "00";
 
-            -- Branch
-            when "1000" =>
-                nextState <= "0000";
-            
-                ALUSrcA <= '1';
-                ALUSrcB <= "00";
-                ALUOp <= "01";
-                PCSrc <= "01";
-                Branch <= '1';
+            when s2 =>
+                o_aluSrcA   <= '1';
+                o_aluSrcB   <= "10";
+                o_aluOp     <= "00";
 
-            -- ADDI Execute
-            when "1001" =>
-                nextState <= "1010";
-            
-                ALUSrcA <= '1';
-                ALUSrcB <= "10";
-                ALUOp <= "00";
-
-            -- ADDI Writeback
-            when "1010" =>
-                nextState <= "0000";
-            
-                RegDst <= '0';
-                MemtoReg <= '0';
-                RegWrite <= '1';
-
-            when "1011" =>
-                PCSrc <= "10";
-                PCWrite <= '1';
+            when s3 =>
+                o_iOrD      <= '1';
                 
-                nextState <= "0000";
+            when s4 =>
+                o_regDst    <= '0';
+                o_memToReg  <= '1';
+                o_regWrite  <= '1';
                 
-            when others =>
-                nextState <= "0000";
-         
-            end case;
-        end if;
-    else
-		
-	 end if;
-    end process;
-    
-end behave;
+            when s5 =>
+                o_iOrD      <= '1';
+                o_memWrite  <= '1';
+
+            when s6 =>
+                o_aluSrcA   <= '1';
+                o_aluSrcB   <= "00";
+                o_aluOp     <= "10";
+
+            when s7 =>
+                o_regDst    <= '1';
+                o_memToReg  <= '0';
+                o_regWrite  <= '1';
+
+            when s8 =>
+                o_aluSrcA   <= '1';
+                o_aluSrcB   <= "00";
+                o_aluOp     <= "01";
+                o_pcSrc     <= "01";
+                o_branch    <= '1';
+
+            when s9 =>
+                o_aluSrcA   <= '1';
+                o_aluSrcB   <= "10";
+                o_aluOp     <= "00";
+
+            when s10 =>
+                o_regDst    <= '0';
+                o_memToReg  <= '0';
+                o_regWrite  <= '1';
+
+            when s11 =>
+                o_pcSrc     <= "10";
+                o_pcWrite   <= '1';
+        end case;
+    end process outputs;
+
+    o_state <= r_state;
+end rtl;
