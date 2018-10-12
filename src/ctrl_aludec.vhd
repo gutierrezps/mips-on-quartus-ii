@@ -1,34 +1,39 @@
-LIBRARY IEEE; USE IEEE.STD_LOGIC_1164.ALL;
+-- Multicycle MIPS / Control Unit / ALU Decoder
+--
+-- Author: Gutierrez PS / https://github.com/gutierrezps/mips-on-quartus-ii
 
-ENTITY ctrl_aludec IS
-PORT( 
-    Funct       : IN  STD_LOGIC_VECTOR(5 DOWNTO 0);
-    ALUOp       : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
-    ALUControl  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity ctrl_aludec is
+port( 
+    i_funct     : in  std_logic_vector(5 downto 0);
+    i_aluOp     : in  std_logic_vector(1 downto 0);
+    o_aluControl: out std_logic_vector(2 downto 0)
 );
-END ctrl_aludec;
+end ctrl_aludec;
 
-ARCHITECTURE behave OF ctrl_aludec IS
-BEGIN
-    PROCESS(Funct, ALUOp) BEGIN
-        IF ALUOp = "00" THEN
-            ALUControl <= "010";
+architecture rtl of ctrl_aludec is
+begin
+    process(i_funct, i_aluOp) begin
+        if i_aluOp = "00" then      -- add
+            o_aluControl <= "010";
 
-        ELSIF ALUOp = "01" THEN
-            ALUControl <= "110";
+        elsif i_aluOp = "01" then   -- sub
+            o_aluControl <= "110";
 
-        ELSIF ALUOp = "10" THEN
-            CASE Funct IS
-                WHEN "100000" => ALUControl <= "010";
-                WHEN "100010" => ALUControl <= "110";
-                WHEN "100100" => ALUControl <= "000";
-                WHEN "100101" => ALUControl <= "001";
-                WHEN "101010" => ALUControl <= "111";
-                WHEN OTHERS   => ALUControl <= "XXX";
-            END CASE;
+        elsif i_aluOp = "10" then   -- check i_funct
+            case i_funct is
+                when "100000" => o_aluControl <= "010";     -- add
+                when "100010" => o_aluControl <= "110";     -- sub
+                when "100100" => o_aluControl <= "000";     -- and
+                when "100101" => o_aluControl <= "001";     -- or
+                when "101010" => o_aluControl <= "111";     -- slt
+                when others   => o_aluControl <= "---";
+            end case;
 
-        ELSE
-            ALUControl <= "XXX";
-        END IF;
-    END PROCESS;
-END;
+        else
+            o_aluControl <= "---";
+        end if;
+    end process;
+end;
