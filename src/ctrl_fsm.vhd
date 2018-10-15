@@ -49,22 +49,22 @@ begin
                 when s0 => r_state <= s1;
 
                 when s1 =>
-                    if ((i_opcode = 35 ) or (i_opcode = 43)) then
+                    if ((i_opcode = 35) or (i_opcode = 43)) then    -- load or store word (lw or sw)
                         r_state <= s2;
-                    elsif(i_opcode = 0) then    -- r-type
+                    elsif(i_opcode = 0) then    -- r-type (add, sub)
                         r_state <= s6;
-                    elsif(i_opcode = 4) then    -- branch
+                    elsif(i_opcode = 4) then    -- branch if equal (beq)
                         r_state <= s8;
                     elsif(i_opcode = 8) then    -- addi
                         r_state <= s9;
-                    elsif(i_opcode = 2) then    -- jump
+                    elsif(i_opcode = 2) then    -- jump (j)
                         r_state <= s11;
                     end if;
                 
                 when s2 =>
-                    if(i_opcode = 35) then
+                    if(i_opcode = 35) then      -- lw
                         r_state <= s3;
-                    elsif(i_opcode = 43) then
+                    elsif(i_opcode = 43) then   -- sw
                         r_state <= s5;
                     end if;
                 
@@ -154,5 +154,7 @@ begin
         end case;
     end process outputs;
 
-    o_state <= r_state;
+    -- enum to std_logic_vector conversion
+    -- source: https://stackoverflow.com/a/42255676/2014507
+    o_state <= std_logic_vector(to_unsigned(t_stateType'POS(r_state), o_state'length));
 end rtl;
