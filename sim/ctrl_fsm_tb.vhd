@@ -76,7 +76,7 @@ begin
             and o_aluOp = "00" and o_pcSrc = "00"
             report "Mismatch S0 flow output" severity error;
         assert o_irWrite = '1' and o_pcWrite = '1'
-            and o_regWrite = '0' and o_branch = '0'
+            and o_regWrite = '0' and o_branch = '0' and o_memWrite = '0'
             report "Mismatch S0 enables output" severity error;
         
         i_opcode <= "100011";   -- load word
@@ -87,7 +87,7 @@ begin
         assert o_aluSrcA = '0' and o_aluSrcB = "11" and o_aluOp = "00"
             report "Mismatch S1 flow output" severity error;
         assert o_irWrite = '0' and o_pcWrite = '0'
-            and o_regWrite = '0' and o_branch = '0'
+            and o_regWrite = '0' and o_branch = '0' and o_memWrite = '0'
             report "Mismatch S1 enables output" severity error;
         
         wait for c_CLOCK_PERIOD;
@@ -96,7 +96,7 @@ begin
         assert o_aluSrcA = '1' and o_aluSrcB = "10" and o_aluOp = "00"
             report "Mismatch S2 flow output" severity error;
         assert o_irWrite = '0' and o_pcWrite = '0'
-            and o_regWrite = '0' and o_branch = '0'
+            and o_regWrite = '0' and o_branch = '0' and o_memWrite = '0'
             report "Mismatch S2 enables output" severity error;
         
         wait for c_CLOCK_PERIOD;
@@ -104,7 +104,7 @@ begin
         check_state(s3);
         assert o_iOrD = '1' report "Mismatch S3 flow output" severity error;
         assert o_irWrite = '0' and o_pcWrite = '0'
-            and o_regWrite = '0' and o_branch = '0'
+            and o_regWrite = '0' and o_branch = '0' and o_memWrite = '0'
             report "Mismatch S3 enables output" severity error;
 
         wait for c_CLOCK_PERIOD;
@@ -113,12 +113,103 @@ begin
         assert o_regDst = '0' and o_memToReg = '1'
             report "Mismatch S4 flow output" severity error;
         assert o_irWrite = '0' and o_pcWrite = '0'
-            and o_regWrite = '1' and o_branch = '0'
+            and o_regWrite = '1' and o_branch = '0' and o_memWrite = '0'
             report "Mismatch S4 enables output" severity error;
 
         wait for c_CLOCK_PERIOD;
 
         check_state(s0);
+        i_opcode <= "101011";   -- store word
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s1);
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s2);
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s5);
+        assert o_iOrD = '1' report "Mismatch S5 flow output" severity error;
+        assert o_irWrite = '0' and o_pcWrite = '0'
+            and o_regWrite = '0' and o_branch = '0' and o_memWrite = '1'
+            report "Mismatch S5 enables output" severity error;
+
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s0);
+        i_opcode <= "000000";   -- r-type
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s1);
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s6);
+        assert o_aluSrcA = '1' and o_aluSrcB = "00" and o_aluOp = "10"
+            report "Mismatch S6 flow output" severity error;
+        assert o_irWrite = '0' and o_pcWrite = '0'
+            and o_regWrite = '0' and o_branch = '0' and o_memWrite = '0'
+            report "Mismatch S6 enables output" severity error;
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s7);
+        assert o_regDst = '1' and o_memToReg = '0'
+            report "Mismatch S7 flow output" severity error;
+        assert o_irWrite = '0' and o_pcWrite = '0'
+            and o_regWrite = '1' and o_branch = '0' and o_memWrite = '0'
+            report "Mismatch S7 enables output" severity error;
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s0);
+        i_opcode <= "000100";   -- beq
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s1);
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s8);
+        assert o_aluSrcA = '1' and o_aluSrcB = "10"
+            and o_aluOp = "01" and o_pcSrc = "01"
+            report "Mismatch S8 flow output" severity error;
+        assert o_irWrite = '0' and o_pcWrite = '0'
+            and o_regWrite = '0' and o_branch = '1' and o_memWrite = '0'
+            report "Mismatch S8 enables output" severity error;
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s0);
+        i_opcode <= "001000";   -- addi
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s1);
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s9);
+        assert o_aluSrcA = '1' and o_aluSrcB = "10" and o_aluOp = "00"
+            report "Mismatch S9 flow output" severity error;
+        assert o_irWrite = '0' and o_pcWrite = '0'
+            and o_regWrite = '0' and o_branch = '0' and o_memWrite = '0'
+            report "Mismatch S9 enables output" severity error;
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s10);
+        assert o_regDst = '0' and o_memToReg = '0'
+            report "Mismatch S10 flow output" severity error;
+        assert o_irWrite = '0' and o_pcWrite = '0'
+            and o_regWrite = '1' and o_branch = '0' and o_memWrite = '0'
+            report "Mismatch S10 enables output" severity error;
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s0);
+        i_opcode <= "000010";   -- jump
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s1);
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s11);
+        assert o_pcSrc = "10" report "Mismatch S11 flow output" severity error;
+        assert o_irWrite = '0' and o_pcWrite = '1'
+            and o_regWrite = '0' and o_branch = '0' and o_memWrite = '0'
+            report "Mismatch S11 enables output" severity error;
 
         -- End of stimulus
 
