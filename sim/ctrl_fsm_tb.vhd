@@ -1,8 +1,6 @@
 -- Multicycle MIPS / Control Unit / Finite State Machine testbench
 --
 -- Author: Gutierrez PS / https://github.com/gutierrezps/mips-on-quartus-ii
---
--- Based on results from http://www.doulos.com/knowhow/perl/testbench_creation/
 
 library ieee;
 use ieee.std_logic_1164.all;
