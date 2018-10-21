@@ -1,96 +1,88 @@
--- Processador MIPS Multiciclo
--- 
--- Unidade de Controle
+-- Multicycle MIPS / Control Unit
 --
--- Autor: Gabriel Gutierrez P. Soares
--- Data : 03 de agosto de 2018
---
--- Minicurso FPGA
--- Professores: Marcos Meira, Victor
---
---
+-- Author: Gutierrez PS / https://github.com/gutierrezps/mips-on-quartus-ii
 
-library IEEE;
-use IEEE.STD_LOGIC_1164.all;
+library ieee;
+use ieee.std_logic_1164.all;
 
 entity control_unit is
-port (
-    CLK         : in  STD_LOGIC;
-    RST         : in  STD_LOGIC;
-    MemWrite    : out STD_LOGIC;
-    Opcode      : in  STD_LOGIC_VECTOR(5 downto 0);
-    Funct       : in  STD_LOGIC_VECTOR(5 downto 0);
-    IorD        : out STD_LOGIC;
-    IRWrite     : out STD_LOGIC;
-    RegDst      : out STD_LOGIC;
-    MemToReg    : out STD_LOGIC;
-    RegWrite    : out STD_LOGIC;
-    ALUSrcA     : out STD_LOGIC;
-    ALUSrcB     : out STD_LOGIC_VECTOR(1 downto 0);
-    ALUControl  : out STD_LOGIC_VECTOR(2 downto 0);
-    PCSrc       : out STD_LOGIC_VECTOR(1 downto 0);
-    Branch      : out STD_LOGIC;
-    PCWrite     : out STD_LOGIC;
-    State       : out STD_LOGIC_VECTOR(3 downto 0)
-);
+    port (
+        i_clk           : in  std_logic;
+        i_rst           : in  std_logic;
+        o_memWrite      : out std_logic;
+        i_opcode        : in  std_logic_vector(5 downto 0);
+        i_funct         : in  std_logic_vector(5 downto 0);
+        o_iOrD          : out std_logic;
+        o_irWrite       : out std_logic;
+        o_regDst        : out std_logic;
+        o_memToReg      : out std_logic;
+        o_regWrite      : out std_logic;
+        o_aluSrcA       : out std_logic;
+        o_aluSrcB       : out std_logic_vector(1 downto 0);
+        o_aluControl    : out std_logic_vector(2 downto 0);
+        o_pcSrc         : out std_logic_vector(1 downto 0);
+        o_branch        : out std_logic;
+        o_pcWrite       : out std_logic;
+        o_state         : out std_logic_vector(3 downto 0)
+    );
 end control_unit;
 
 architecture multicycle of control_unit is
 
     component ctrl_fsm
-    port (
-        CLK     : in  STD_LOGIC;
-        RST     : in  STD_LOGIC;
-        Opcode  : in  STD_LOGIC_VECTOR(5 downto 0);
-        IorD    : out STD_LOGIC;
-        IRWrite : out STD_LOGIC;
-        RegDst  : out STD_LOGIC;
-        MemtoReg: out STD_LOGIC;
-        RegWrite: out STD_LOGIC;
-        ALUSrcA : out STD_LOGIC;
-        ALUSrcB : out STD_LOGIC_VECTOR(1 downto 0);
-        ALUOp   : out STD_LOGIC_VECTOR(1 downto 0);
-        PCSrc   : out STD_LOGIC_VECTOR(1 downto 0);
-        PCWrite : out STD_LOGIC;
-        Branch  : out STD_LOGIC;
-        MemWrite: out STD_LOGIC;
-        State   : out STD_LOGIC_VECTOR(3 downto 0)
-    );
+        port (
+            i_clk       : in std_logic;
+            i_rst       : in std_logic;
+            i_opcode    : in std_logic_vector(5 downto 0);
+            o_iOrD      : out std_logic;
+            o_irWrite   : out std_logic;
+            o_regDst    : out std_logic;
+            o_memToReg  : out std_logic;
+            o_regWrite  : out std_logic;
+            o_aluSrcA   : out std_logic;
+            o_aluSrcB   : out std_logic_vector(1 downto 0);
+            o_aluOp     : out std_logic_vector(1 downto 0);
+            o_pcSrc     : out std_logic_vector(1 downto 0);
+            o_pcWrite   : out std_logic;
+            o_branch    : out std_logic;
+            o_memWrite  : out std_logic;
+            o_state     : out std_logic_vector(3 downto 0)
+        );
     end component;
 
     component ctrl_aludec
-    port ( 
-        Funct       : in  STD_LOGIC_VECTOR(5 downto 0);
-        ALUOp       : in  STD_LOGIC_VECTOR(1 downto 0);
-        ALUControl  : out STD_LOGIC_VECTOR(2 downto 0)
-    );
+        port( 
+            i_funct     : in  std_logic_vector(5 downto 0);
+            i_aluOp     : in  std_logic_vector(1 downto 0);
+            o_aluControl: out std_logic_vector(2 downto 0)
+        );
     end component;
 
-    signal ALUOp    : STD_LOGIC_VECTOR(1 downto 0);
+    signal w_aluOp  : std_logic_vector(1 downto 0);
 
 begin
     fsm: ctrl_fsm port map (
-        CLK         => CLK,
-        RST         => RST,
-        Opcode      => Opcode,
-        IorD        => IorD,
-        IRWrite     => IRWrite,
-        RegDst      => RegDst,
-        MemtoReg    => MemtoReg,
-        RegWrite    => RegWrite,
-        ALUSrcA     => ALUSrcA,
-        ALUSrcB     => ALUSrcB,
-        ALUOp       => ALUOp,
-        PCSrc       => PCSrc,
-        PCWrite     => PCWrite,
-        Branch      => Branch,
-        MemWrite    => MemWrite,
-        State       => State
+        i_clk       => i_clk,
+        i_rst       => i_rst,
+        i_opcode    => i_opcode,
+        o_iOrD      => o_iOrD,
+        o_irWrite   => o_irWrite,
+        o_regDst    => o_regDst,
+        o_memToReg  => o_memToReg,
+        o_regWrite  => o_regWrite,
+        o_aluSrcA   => o_aluSrcA,
+        o_aluSrcB   => o_aluSrcB,
+        o_aluOp     => w_aluOp,
+        o_pcSrc     => o_pcSrc,
+        o_pcWrite   => o_pcWrite,
+        o_branch    => o_branch,
+        o_memWrite  => o_memWrite,
+        o_state     => o_state
     );
 
     aludec: ctrl_aludec port map (
-        Funct       => Funct,
-        ALUOp       => ALUOp,
-        ALUControl  => ALUControl
+        i_funct         => i_funct,
+        i_aluOp         => w_aluOp,
+        o_aluControl    => o_aluControl
     );
 end multicycle;
