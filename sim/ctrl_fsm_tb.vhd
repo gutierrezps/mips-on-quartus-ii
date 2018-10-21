@@ -209,6 +209,17 @@ begin
             and o_regWrite = '0' and o_branch = '0' and o_memWrite = '0'
             report "Mismatch S11 enables output" severity error;
 
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s0);
+        i_opcode <= "111111";   -- undefined instruction
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s1);        -- should return to s0
+        wait for c_CLOCK_PERIOD;
+
+        check_state(s0);
+        
         -- End of stimulus
 
         r_stop_clock <= true;

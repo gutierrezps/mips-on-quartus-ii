@@ -43,28 +43,30 @@ begin
         if i_rst = '1' then
             r_state <= s0;
 
-        elsif (rising_edge(i_clk)) then
+        elsif rising_edge(i_clk) then
         
             case r_state is
                 when s0 => r_state <= s1;
 
                 when s1 =>
-                    if ((i_opcode = 35) or (i_opcode = 43)) then    -- load or store word (lw or sw)
+                    if i_opcode = 35 or i_opcode = 43 then    -- load or store word (lw or sw)
                         r_state <= s2;
-                    elsif(i_opcode = 0) then    -- r-type (add, sub)
+                    elsif i_opcode = 0 then     -- r-type (add, sub)
                         r_state <= s6;
-                    elsif(i_opcode = 4) then    -- branch if equal (beq)
+                    elsif i_opcode = 4 then     -- branch if equal (beq)
                         r_state <= s8;
-                    elsif(i_opcode = 8) then    -- addi
+                    elsif i_opcode = 8 then     -- addi
                         r_state <= s9;
-                    elsif(i_opcode = 2) then    -- jump (j)
+                    elsif i_opcode = 2 then     -- jump (j)
                         r_state <= s11;
+                    else                        -- unknown instruction
+                        r_state <= s0;
                     end if;
                 
                 when s2 =>
-                    if(i_opcode = 35) then      -- lw
+                    if i_opcode = 35 then       -- lw
                         r_state <= s3;
-                    elsif(i_opcode = 43) then   -- sw
+                    elsif i_opcode = 43 then    -- sw
                         r_state <= s5;
                     end if;
                 
