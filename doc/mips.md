@@ -72,3 +72,9 @@ Field   | Bits
 --------|-----
 `opcode`| 31:26
 `addr`  | 25:0
+
+## Processor components
+
+The MIPS processor can be viewed as three main blocks: **datapath**, **control unit** and **instruction/data memory**, illustrated below.
+
+![MIPS Blocks: memory, datapath and control unit](mips-blocks.png)
