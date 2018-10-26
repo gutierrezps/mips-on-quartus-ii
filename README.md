@@ -1,7 +1,8 @@
 # MIPS on Quartus II
 
 Multicycle MIPS microarchitecture on Quartus II 13.0sp1, focused on Terasic DE0 Development board.
-The multicycle microarchitecture is based on chapter 7 of Harris' *Digital Design and Computer Architecture*.
+
+The multicycle microarchitecture is based on chapter 7 of Harris' *Digital Design and Computer Architecture*. See [doc/mips.md](doc/mips.md) for details.
 
 ## Requirements
 
