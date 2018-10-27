@@ -1,24 +1,34 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.all;
-use IEEE.STD_LOGIC_UNSIGNED.all;
-use IEEE.NUMERIC_STD.all;
+-- Multicycle MIPS Processor - Instruction/Data memory
+--
+-- Author: Gutierrez PS / https://github.com/gutierrezps/mips-on-quartus-ii
+--
+-- Instructions are read-only, starting at address 0x00000000
+-- Data memory starts at address 0x00008000 (i_addr(7) = '1')
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
 
 entity mips_mem is
-port(
-    CLK         : in  STD_LOGIC;
-    Addr        : in  STD_LOGIC_VECTOR(31 downto 0);
-    WE          : in  STD_LOGIC;
-    WriteData   : in  STD_LOGIC_VECTOR(31 downto 0);
-    ReadData    : out STD_LOGIC_VECTOR(31 downto 0)
-);
+    port (
+        i_clk         : in  std_logic;
+        i_addr        : in  std_logic_vector(31 downto 0);
+        i_writeEnable : in  std_logic;
+        i_writeData   : in  std_logic_vector(31 downto 0);
+        o_readData    : out std_logic_vector(31 downto 0)
+    );
 end mips_mem;
 
-architecture sync of mips_mem is
-    type memory is array (15 downto 0) of STD_LOGIC_VECTOR (31 downto 0);
+architecture rtl of mips_mem is
+    constant c_IMPLEMENTED_POSITIONS: integer := 16;
+
+    type t_memory is array (c_IMPLEMENTED_POSITIONS-1 downto 0)
+        of std_logic_vector (31 downto 0);
     
-    signal dataMem: memory;
+    signal r_dataMem: t_memory;
     
-    signal outData: STD_LOGIC_VECTOR(31 downto 0);
+    signal r_outData: std_logic_vector(31 downto 0) := X"00000000";
     
     -- Test program:
     --      addi    $gp, $zero, 32767
@@ -31,7 +41,7 @@ architecture sync of mips_mem is
     --      beq     $s2, $s3, reset
     --      sw      $s2, 0($gp)
     --      j       loop
-    constant instrMem: memory := (
+    constant c_instrMem: t_memory := (
         0   => X"201C7FFF",
         1   => X"201C0001",
         2   => X"2273000A",
@@ -45,26 +55,32 @@ architecture sync of mips_mem is
         others  => X"00000000"
     );
     
-    signal realAddr: STD_LOGIC_VECTOR(3 downto 0);
+    signal w_wordAddr: integer;
     
 begin
-    realAddr <= Addr(5 downto 2);
+    w_wordAddr <= to_integer(unsigned(i_addr(6 downto 2)));
     
-    process (CLK) begin
-        if (rising_edge(CLK)) then
-            if (WE = '1' and Addr(7) = '1') then
-                dataMem(to_integer(unsigned(realAddr))) <= WriteData;
+    writeProc: process (i_clk)
+    begin
+        if rising_edge(i_clk) and w_wordAddr < c_IMPLEMENTED_POSITIONS then
+            if i_writeEnable = '1' and i_addr(7) = '1' then
+                r_dataMem(w_wordAddr) <= i_writeData;
             end if;
         end if;
-    end process;
+    end process writeProc;
     
-    process (Addr, dataMem) begin
-        if (Addr(7) = '1') then     -- Addr = 8xxxh, data mem
-            outData <= dataMem(to_integer(unsigned(realAddr)));
+    readProc: process (i_addr, r_dataMem)
+    begin
+        if w_wordAddr < c_IMPLEMENTED_POSITIONS then
+            if i_addr(7) = '1' then
+                r_outData <= r_dataMem(w_wordAddr);
+            else
+                r_outData <= c_instrMem(w_wordAddr);
+            end if;
         else
-            outData <= instrMem(to_integer(unsigned(realAddr)));
+            r_outData <= X"00000000";
         end if;
-    end process;
+    end process readProc;
     
-    ReadData <= outData;
+    o_readData <= r_outData;
 end;
