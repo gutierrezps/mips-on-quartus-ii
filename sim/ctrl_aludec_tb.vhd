@@ -18,8 +18,7 @@ architecture bench of ctrl_aludec_tb is
 
 begin -- architecture bench
 
-    dut: entity work.ctrl_aludec
-    port map (
+    dut: entity work.ctrl_aludec port map (
         i_funct => i_funct,
         i_aluOp => i_aluOp,
         o_aluControl => o_aluControl

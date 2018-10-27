@@ -7,15 +7,15 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
 entity alu_width is
-generic (
-    g_WIDTH : integer := 32
-);
-port (
-    i_a, i_b: in  std_logic_vector(g_WIDTH-1 downto 0);
-    i_ctrl  : in  std_logic_vector( 2 downto 0);
-    o_res   : out std_logic_vector(g_WIDTH-1 downto 0);
-    o_zero  : out std_logic
-);
+    generic (
+        g_WIDTH : integer := 32
+    );
+    port (
+        i_a, i_b: in  std_logic_vector(g_WIDTH-1 downto 0);
+        i_ctrl  : in  std_logic_vector( 2 downto 0);
+        o_res   : out std_logic_vector(g_WIDTH-1 downto 0);
+        o_zero  : out std_logic
+    );
 end alu_width;
 
 architecture rtl of alu_width is

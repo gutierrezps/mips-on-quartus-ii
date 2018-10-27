@@ -6,27 +6,27 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity datapath is
-port (
-    i_clk         : in  std_logic;
-    i_rst         : in  std_logic;
-    i_readData    : in  std_logic_vector(31 downto 0);
-    o_writeData   : out std_logic_vector(31 downto 0);
-    o_memAddr     : out std_logic_vector(31 downto 0);
-    o_opcode      : out std_logic_vector( 5 downto 0);
-    o_funct       : out std_logic_vector( 5 downto 0);
-    i_iOrD        : in  std_logic;
-    i_irWrite     : in  std_logic;
-    i_regDst      : in  std_logic;
-    i_memToReg    : in  std_logic;
-    i_regWrite    : in  std_logic;
-    i_aluSrcA     : in  std_logic;
-    i_aluSrcB     : in  std_logic_vector(1 downto 0);
-    i_aluControl  : in  std_logic_vector(2 downto 0);
-    i_pcSrc       : in  std_logic_vector(1 downto 0);
-    i_branch      : in  std_logic;
-    i_pcWrite     : in  std_logic;
-    o_aluResult   : out std_logic_vector(31 downto 0)
-);
+    port (
+        i_clk         : in  std_logic;
+        i_rst         : in  std_logic;
+        i_readData    : in  std_logic_vector(31 downto 0);
+        o_writeData   : out std_logic_vector(31 downto 0);
+        o_memAddr     : out std_logic_vector(31 downto 0);
+        o_opcode      : out std_logic_vector( 5 downto 0);
+        o_funct       : out std_logic_vector( 5 downto 0);
+        i_iOrD        : in  std_logic;
+        i_irWrite     : in  std_logic;
+        i_regDst      : in  std_logic;
+        i_memToReg    : in  std_logic;
+        i_regWrite    : in  std_logic;
+        i_aluSrcA     : in  std_logic;
+        i_aluSrcB     : in  std_logic_vector(1 downto 0);
+        i_aluControl  : in  std_logic_vector(2 downto 0);
+        i_pcSrc       : in  std_logic_vector(1 downto 0);
+        i_branch      : in  std_logic;
+        i_pcWrite     : in  std_logic;
+        o_aluResult   : out std_logic_vector(31 downto 0)
+    );
 end datapath;
 
 architecture struct of datapath is

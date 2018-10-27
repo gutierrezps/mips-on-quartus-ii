@@ -23,8 +23,7 @@ architecture bench of mux2_width_tb is
 
 begin -- architecture bench
 
-    dut: entity work.mux2_width
-    port map (
+    dut: entity work.mux2_width port map (
         i_data0 => i_data0,
         i_data1 => i_data1,
         i_sel   => i_sel,
@@ -32,6 +31,7 @@ begin -- architecture bench
     );
 
     stimulus: process
+    
         procedure check_mux(
             constant data0  : in std_logic_vector(g_WIDTH-1 downto 0);
             constant data1  : in std_logic_vector(g_WIDTH-1 downto 0);

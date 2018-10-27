@@ -6,13 +6,13 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity sl2_width is
-generic (
-    g_WIDTH : integer := 32
-);
-port (
-    i_a: in  std_logic_vector(g_WIDTH-1 downto 0);
-    o_y: out std_logic_vector(g_WIDTH-1 downto 0)
-);
+    generic (
+        g_WIDTH : integer := 32
+    );
+    port (
+        i_a: in  std_logic_vector(g_WIDTH-1 downto 0);
+        o_y: out std_logic_vector(g_WIDTH-1 downto 0)
+    );
 end sl2_width;
 
 architecture rtl of sl2_width is

@@ -6,14 +6,14 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity signext_width is
-generic (
-    g_INPUT_WIDTH   : integer := 16;
-    g_OUTPUT_WIDTH  : integer := 32
-);
-port (
-    i_a: in  std_logic_vector(g_INPUT_WIDTH-1 downto 0);
-    o_y: out std_logic_vector(g_OUTPUT_WIDTH-1 downto 0)
-);
+    generic (
+        g_INPUT_WIDTH   : integer := 16;
+        g_OUTPUT_WIDTH  : integer := 32
+    );
+    port (
+        i_a: in  std_logic_vector(g_INPUT_WIDTH-1 downto 0);
+        o_y: out std_logic_vector(g_OUTPUT_WIDTH-1 downto 0)
+    );
 end signext_width;
 
 architecture rtl of signext_width is

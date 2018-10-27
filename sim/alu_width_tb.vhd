@@ -20,8 +20,7 @@ architecture bench of alu_width_tb is
 
 begin -- architecture bench
 
-    dut: entity work.alu_width
-    port map (
+    dut: entity work.alu_width port map (
         i_a     => i_a,
         i_b     => i_b,
         i_ctrl  => i_ctrl,

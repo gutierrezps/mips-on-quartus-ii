@@ -25,8 +25,7 @@ architecture bench of mux4_width_tb is
 
 begin -- architecture bench
 
-    dut: entity work.mux4_width
-    port map (
+    dut: entity work.mux4_width port map (
         i_data0 => i_data0,
         i_data1 => i_data1,
         i_data2 => i_data2,

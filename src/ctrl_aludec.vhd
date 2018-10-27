@@ -6,7 +6,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity ctrl_aludec is
-    port( 
+    port ( 
         i_funct     : in  std_logic_vector(5 downto 0);
         i_aluOp     : in  std_logic_vector(1 downto 0);
         o_aluControl: out std_logic_vector(2 downto 0)
@@ -15,7 +15,8 @@ end ctrl_aludec;
 
 architecture rtl of ctrl_aludec is
 begin
-    process(i_funct, i_aluOp) begin
+    process (i_funct, i_aluOp)
+    begin
         if i_aluOp = "00" then      -- add
             o_aluControl <= "010";
 

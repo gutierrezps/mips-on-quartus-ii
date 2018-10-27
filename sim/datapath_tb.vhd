@@ -40,28 +40,27 @@ architecture bench of datapath_tb is
 
 begin
 
-    dut: entity work.datapath
-        port map (
-            i_clk         => i_clk,
-            i_rst         => i_rst,
-            i_readData    => i_readData,
-            o_writeData   => o_writeData,
-            o_memAddr     => o_memAddr,
-            o_opcode      => o_opcode,
-            o_funct       => o_funct,
-            i_iOrD        => i_iOrD,
-            i_irWrite     => i_irWrite,
-            i_regDst      => i_regDst,
-            i_memToReg    => i_memToReg,
-            i_regWrite    => i_regWrite,
-            i_aluSrcA     => i_aluSrcA,
-            i_aluSrcB     => i_aluSrcB,
-            i_aluControl  => i_aluControl,
-            i_pcSrc       => i_pcSrc,
-            i_branch      => i_branch,
-            i_pcWrite     => i_pcWrite,
-            o_aluResult     => o_aluResult
-        );
+    dut: entity work.datapath port map (
+        i_clk         => i_clk,
+        i_rst         => i_rst,
+        i_readData    => i_readData,
+        o_writeData   => o_writeData,
+        o_memAddr     => o_memAddr,
+        o_opcode      => o_opcode,
+        o_funct       => o_funct,
+        i_iOrD        => i_iOrD,
+        i_irWrite     => i_irWrite,
+        i_regDst      => i_regDst,
+        i_memToReg    => i_memToReg,
+        i_regWrite    => i_regWrite,
+        i_aluSrcA     => i_aluSrcA,
+        i_aluSrcB     => i_aluSrcB,
+        i_aluControl  => i_aluControl,
+        i_pcSrc       => i_pcSrc,
+        i_branch      => i_branch,
+        i_pcWrite     => i_pcWrite,
+        o_aluResult     => o_aluResult
+    );
 
     stimulus: process
 

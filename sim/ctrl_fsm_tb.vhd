@@ -36,33 +36,33 @@ architecture bench of ctrl_fsm_tb is
 
 begin
 
-    dut: entity work.ctrl_fsm
-        port map (
-            i_clk   => i_clk,
-            i_rst   => i_rst,
-            i_opcode    => i_opcode,
-            o_iOrD      => o_iOrD,
-            o_irWrite   => o_irWrite,
-            o_regDst    => o_regDst,
-            o_memToReg  => o_memToReg,
-            o_regWrite  => o_regWrite,
-            o_aluSrcA   => o_aluSrcA,
-            o_aluSrcB   => o_aluSrcB,
-            o_aluOp     => o_aluOp,
-            o_pcSrc     => o_pcSrc,
-            o_pcWrite   => o_pcWrite,
-            o_branch    => o_branch,
-            o_memWrite  => o_memWrite,
-            o_state     => o_state
-        );
+    dut: entity work.ctrl_fsm port map (
+        i_clk   => i_clk,
+        i_rst   => i_rst,
+        i_opcode    => i_opcode,
+        o_iOrD      => o_iOrD,
+        o_irWrite   => o_irWrite,
+        o_regDst    => o_regDst,
+        o_memToReg  => o_memToReg,
+        o_regWrite  => o_regWrite,
+        o_aluSrcA   => o_aluSrcA,
+        o_aluSrcB   => o_aluSrcB,
+        o_aluOp     => o_aluOp,
+        o_pcSrc     => o_pcSrc,
+        o_pcWrite   => o_pcWrite,
+        o_branch    => o_branch,
+        o_memWrite  => o_memWrite,
+        o_state     => o_state
+    );
 
     stimulus: process
-        procedure check_state(constant expected_state: in t_stateType)
-        is
-        begin -- procedure check_state
+        
+        procedure check_state(constant expected_state: in t_stateType) is
+        begin
             assert expected_state = t_stateType'VAL(to_integer(unsigned(o_state)))
                 report "State mismatch" severity error;
         end procedure; -- check_state
+
     begin
         -- Reset
         i_rst <= '1';

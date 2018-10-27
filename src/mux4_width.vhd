@@ -8,17 +8,17 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity mux4_width is
-generic (
-    g_WIDTH : integer := 32     -- Override when instantiated
-);
-port (
-    i_data0,
-    i_data1,
-    i_data2,
-    i_data3 : in  std_logic_vector(g_WIDTH-1 downto 0);
-    i_sel   : in  std_logic_vector(1 downto 0);
-    o_data  : out std_logic_vector(g_WIDTH-1 downto 0)
-);
+    generic (
+        g_WIDTH : integer := 32     -- Override when instantiated
+    );
+    port (
+        i_data0,
+        i_data1,
+        i_data2,
+        i_data3 : in  std_logic_vector(g_WIDTH-1 downto 0);
+        i_sel   : in  std_logic_vector(1 downto 0);
+        o_data  : out std_logic_vector(g_WIDTH-1 downto 0)
+    );
 end mux4_width;
 
 architecture rtl of mux4_width is
