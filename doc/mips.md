@@ -78,3 +78,37 @@ Field   | Bits
 The MIPS processor can be viewed as three main blocks: **datapath**, **control unit** and **instruction/data memory**, illustrated below.
 
 ![MIPS Blocks: memory, datapath and control unit](mips-blocks.png)
+
+## Test program
+
+The following program is designed to test the processor by using instructions that cover all states from the finite state machine inside the control unit. It uses memory address 0x8000 (32768) as a counter from 0 to 9, by loading it to `$s0`, using `$s1` as increment, storing the increment result on `$s2` and then storing it back on memory if it's less than 10.
+
+```plain
+        addi    $gp, $zero, 32767
+        addi    $gp, $zero, 1
+        addi    $s3, $s3, 10
+reset:  sw      $zero, 0($gp)
+loop:   lw      $s0, 0($gp)
+        addi    $s1, $zero, 1
+        add     $s2, $s0, $s1
+        beq     $s2, $s3, reset
+        sw      $s2, 0($gp)
+        j       loop
+```
+
+The assembled program is listed below, adapted from [Alan Hogan's MIPS Assembler](https://alanhogan.com/asu/assembler.php). The first column is the memory address, and the second one is the hex representation of each instruction. On the original output, the address starts at `0x00400000`, but since this is a limited MIPS, our programs must start at the first memory position. Data can be stored on memory starting from position `0x00008000`, since it's the furthest to the left that a bit can be set by using a 16-bit immediate and the supported instructions.
+
+```plain
+00000000: 201c7fff ; <input:0> addi $gp, $zero, 32767
+00000004: 201c0001 ; <input:1> addi $gp, $zero, 1
+00000008: 2273000a ; <input:2> addi $s3, $s3, 10
+0000000c: <reset> ; <input:3> reset: sw $zero, 0($gp)
+0000000c: af800000 ; <input:3> reset: sw $zero, 0($gp)
+00000010: <loop> ; <input:4> loop: lw $s0, 0($gp)
+00000010: 8f900000 ; <input:4> loop: lw $s0, 0($gp)
+00000014: 20110001 ; <input:5> addi $s1, $zero, 1
+00000018: 02119020 ; <input:6> add $s2, $s0, $s1
+0000001c: 1253fffb ; <input:7> beq $s2, $s3, reset
+00000020: af920000 ; <input:8> sw $s2, 0($gp)
+00000024: 08000004 ; <input:9> j loop
+```

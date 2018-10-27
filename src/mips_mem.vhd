@@ -20,14 +20,28 @@ architecture sync of mips_mem is
     
     signal outData: STD_LOGIC_VECTOR(31 downto 0);
     
+    -- Test program:
+    --      addi    $gp, $zero, 32767
+    --      addi    $gp, $zero, 1
+    --      addi    $s3, $s3, 10
+    --  reset:  sw      $zero, 0($gp)
+    --  loop:   lw      $s0, 0($gp)
+    --      addi    $s1, $zero, 1
+    --      add     $s2, $s0, $s1
+    --      beq     $s2, $s3, reset
+    --      sw      $s2, 0($gp)
+    --      j       loop
     constant instrMem: memory := (
-        0   => X"201C4000",     --          addi $gp, $zero, 4000h
-        1   => X"AF800000",     --          sw   $zero, 0($gp)
-        2   => X"8F900000",     -- loop:    lw   $s0, 0($gp)
-        3   => X"20110001",     --          addi $s1, $zero, 1
-        4   => X"02119020",     --          add  $s2, $s0, $s1
-        5   => X"AF920000",     --          sw   $s2, 0($gp)
-        6   => X"08100002",     --          j    loop
+        0   => X"201C7FFF",
+        1   => X"201C0001",
+        2   => X"2273000A",
+        3   => X"AF800000",
+        4   => X"8F900000",
+        5   => X"20110001",
+        6   => X"02119020",
+        7   => X"1253FFFB",
+        8   => X"AF920000",
+        9   => X"08000004",
         others  => X"00000000"
     );
     
@@ -38,14 +52,14 @@ begin
     
     process (CLK) begin
         if (rising_edge(CLK)) then
-            if (WE = '1' and Addr(6) = '1') then
+            if (WE = '1' and Addr(7) = '1') then
                 dataMem(to_integer(unsigned(realAddr))) <= WriteData;
             end if;
         end if;
     end process;
     
     process (Addr, dataMem) begin
-        if (Addr(6) = '1') then     -- Addr = 4xxxh, data mem
+        if (Addr(7) = '1') then     -- Addr = 8xxxh, data mem
             outData <= dataMem(to_integer(unsigned(realAddr)));
         else
             outData <= instrMem(to_integer(unsigned(realAddr)));
