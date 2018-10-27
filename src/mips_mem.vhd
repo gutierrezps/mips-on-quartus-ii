@@ -33,7 +33,7 @@ architecture rtl of mips_mem is
     -- Test program:
     --      addi    $gp, $zero, 32767
     --      addi    $gp, $zero, 1
-    --      addi    $s3, $s3, 10
+    --      addi    $s3, $zero, 10
     --  reset:  sw      $zero, 0($gp)
     --  loop:   lw      $s0, 0($gp)
     --      addi    $s1, $zero, 1
@@ -44,7 +44,7 @@ architecture rtl of mips_mem is
     constant c_instrMem: t_memory := (
         0   => X"201C7FFF",
         1   => X"201C0001",
-        2   => X"2273000A",
+        2   => X"2013000A",
         3   => X"AF800000",
         4   => X"8F900000",
         5   => X"20110001",
@@ -62,7 +62,7 @@ begin
     
     writeProc: process (i_clk)
     begin
-        if rising_edge(i_clk) and w_wordAddr < c_IMPLEMENTED_POSITIONS then
+        if rising_edge(i_clk) and w_wordAddr >= 0 and w_wordAddr < c_IMPLEMENTED_POSITIONS then
             if i_writeEnable = '1' and i_addr(7) = '1' then
                 r_dataMem(w_wordAddr) <= i_writeData;
             end if;
@@ -71,7 +71,7 @@ begin
     
     readProc: process (i_addr, r_dataMem)
     begin
-        if w_wordAddr < c_IMPLEMENTED_POSITIONS then
+        if w_wordAddr >= 0 and w_wordAddr < c_IMPLEMENTED_POSITIONS then
             if i_addr(7) = '1' then
                 r_outData <= r_dataMem(w_wordAddr);
             else

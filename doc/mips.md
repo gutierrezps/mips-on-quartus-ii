@@ -86,7 +86,7 @@ The following program is designed to test the processor by using instructions th
 ```plain
         addi    $gp, $zero, 32767
         addi    $gp, $zero, 1
-        addi    $s3, $s3, 10
+        addi    $s3, $zero, 10
 reset:  sw      $zero, 0($gp)
 loop:   lw      $s0, 0($gp)
         addi    $s1, $zero, 1
@@ -101,7 +101,7 @@ The assembled program is listed below, adapted from [Alan Hogan's MIPS Assembler
 ```plain
 00000000: 201c7fff ; <input:0> addi $gp, $zero, 32767
 00000004: 201c0001 ; <input:1> addi $gp, $zero, 1
-00000008: 2273000a ; <input:2> addi $s3, $s3, 10
+00000008: 2013000A ; <input:2> addi $s3, $zero, 10
 0000000c: <reset> ; <input:3> reset: sw $zero, 0($gp)
 0000000c: af800000 ; <input:3> reset: sw $zero, 0($gp)
 00000010: <loop> ; <input:4> loop: lw $s0, 0($gp)
