@@ -2,7 +2,9 @@
 
 Multicycle MIPS microarchitecture on Quartus II 13.0sp1, focused on Terasic DE0 Development board.
 
-The multicycle microarchitecture is based on chapter 7 of Harris' *Digital Design and Computer Architecture*. See [doc/mips.md](doc/mips.md) for details.
+The multicycle microarchitecture is based on chapter 7 of Harris' *Digital Design and Computer Architecture*.
+
+## [MIPS Documentation](doc/mips.md)
 
 ## Requirements
 
@@ -43,5 +45,7 @@ Some testbenches were generated with the aid of Doulos' online tool.
 * Patterson, D. A., & Hennessy, J. L. (2008). *Computer Organization and Design:
     The Hardware/Software Interface*, 4th edition. Morgan Kaufmann.
 * Terasic DE0 Board - <http://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=56&No=364>
+
+---
 
 2018 &mdash; Gutierrez PS

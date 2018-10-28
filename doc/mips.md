@@ -2,7 +2,7 @@
 
 This documents details some aspects of the MIPS processor implemented in this project. The main reference is Harris' *Digital Design and Computer Architecture*.
 
-[Home](../readme.md)
+## [Home](../readme.md)
 
 ## Registers
 
@@ -112,3 +112,6 @@ The assembled program is listed below, adapted from [Alan Hogan's MIPS Assembler
 00000020: af920000 ; <input:8> sw $s2, 0($gp)
 00000024: 08000004 ; <input:9> j loop
 ```
+
+---
+2018 &mdash; Gutierrez PS
