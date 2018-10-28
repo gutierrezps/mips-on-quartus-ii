@@ -79,6 +79,23 @@ The MIPS processor can be viewed as three main blocks: **datapath**, **control u
 
 ![MIPS Blocks: memory, datapath and control unit](mips-blocks.png)
 
+The multicycle datapath is detailed in the picture below (adapted from Harris). Besides the well-known components such as registers, multiplexers and ALU, it has a 32-position register file (described earlier), a sign extender used on the `imm` field, and a couple of left-shifters used to calculate word addresses based on `imm` (I-type) and `addr` (J-type) instruction fields.
+
+![MIPS Multicycle Datapath](mips-datapath.png)
+
+The Arithmetic/Logic Unit (ALU) performs the operations below between input operands *A* and *B*, according to the control input. The outputs are *Res*, the result, and a flag named *Zero* that is true if all bits from *Res* are zero. The operation *Set if Less Than* (SLT) makes *Res* = 1 if *A* < *B*, and *Res* = 0 otherwise.
+
+Control | Function
+--------|------------------
+000     | *A* AND *B*
+001     | *A* OR *B*
+010     | *A* + *B*
+011     | not used
+100     | *A* AND (NOT *B*)
+101     | *A* OR (NOT *B*)
+110     | *A* - *B*
+111     | SLT (*Res* = *A* < *B*)
+
 ## Test program
 
 The following program is designed to test the processor by using instructions that cover all states from the finite state machine inside the control unit. It uses memory address 0x8000 (32768) as a counter from 0 to 9, by loading it to `$s0`, using `$s1` as increment, storing the increment result on `$s2` and then storing it back on memory if it's less than 10.
