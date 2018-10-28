@@ -4,6 +4,8 @@
 --
 -- Instructions are read-only, starting at address 0x00000000
 -- Data memory starts at address 0x00008000 (i_addr(15) = '1')
+--
+-- First two data memory positions are exposed
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -12,11 +14,13 @@ use ieee.numeric_std.all;
 
 entity mips_mem is
     port (
-        i_clk         : in  std_logic;
-        i_addr        : in  std_logic_vector(31 downto 0);
-        i_writeEnable : in  std_logic;
-        i_writeData   : in  std_logic_vector(31 downto 0);
-        o_readData    : out std_logic_vector(31 downto 0)
+        i_clk           : in  std_logic;
+        i_addr          : in  std_logic_vector(31 downto 0);
+        i_writeEnable   : in  std_logic;
+        i_writeData     : in  std_logic_vector(31 downto 0);
+        o_readData      : out std_logic_vector(31 downto 0);
+        o_data0         : out std_logic_vector(31 downto 0);
+        o_data1         : out std_logic_vector(31 downto 0)
     );
 end mips_mem;
 
@@ -74,5 +78,8 @@ begin
                 o_readData <= c_instrMem(to_integer(unsigned(i_addr(14 downto 2))));
             end if;
         end if;
+
+        o_data0 <= r_dataMem(0);
+        o_data1 <= r_dataMem(1);
     end process readProc;
 end;

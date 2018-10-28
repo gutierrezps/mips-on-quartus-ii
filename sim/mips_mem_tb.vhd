@@ -17,6 +17,8 @@ architecture bench of mips_mem_tb is
 
     signal i_clk        : std_logic;
     signal o_readData   : std_logic_vector(31 downto 0);
+    signal o_data0      : std_logic_vector(31 downto 0);
+    signal o_data1      : std_logic_vector(31 downto 0);
     signal i_writeData  : std_logic_vector(31 downto 0);
     signal i_addr       : std_logic_vector(31 downto 0);
     signal i_writeEnable: std_logic := '0';
@@ -25,10 +27,12 @@ begin
 
     dut: entity work.mips_mem port map (
         i_clk           => i_clk,
-        o_readData      => o_readData,
         i_writeData     => i_writeData,
         i_addr          => i_addr,
-        i_writeEnable   => i_writeEnable
+        i_writeEnable   => i_writeEnable,
+        o_readData      => o_readData,
+        o_data0         => o_data0,
+        o_data1         => o_data1
     );
 
     stimulus: process
@@ -62,6 +66,7 @@ begin
         wait until rising_edge(i_clk);
         wait for c_TIME_DELTA;
         assert o_readData = X"12345678" report "write failed" severity error;
+        assert o_data0 = X"12345678" report "data0 mismatch" severity error;
 
         wait for c_TIME_DELTA;
 
@@ -70,6 +75,8 @@ begin
         wait until rising_edge(i_clk);
         wait for c_TIME_DELTA;
         assert o_readData = X"98765432" report "write failed" severity error;
+        assert o_data0 = X"12345678" report "data0 mismatch" severity error;
+        assert o_data1 = X"98765432" report "data1 mismatch" severity error;
 
         -- End of stimulus
 
