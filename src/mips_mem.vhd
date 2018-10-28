@@ -3,7 +3,7 @@
 -- Author: Gutierrez PS / https://github.com/gutierrezps/mips-on-quartus-ii
 --
 -- Instructions are read-only, starting at address 0x00000000
--- Data memory starts at address 0x00008000 (i_addr(7) = '1')
+-- Data memory starts at address 0x00008000 (i_addr(15) = '1')
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -27,8 +27,6 @@ architecture rtl of mips_mem is
         of std_logic_vector (31 downto 0);
     
     signal r_dataMem: t_memory;
-    
-    signal r_outData: std_logic_vector(31 downto 0) := X"00000000";
     
     -- Test program:
     --      addi    $gp, $zero, 32767
@@ -55,32 +53,26 @@ architecture rtl of mips_mem is
         others  => X"00000000"
     );
     
-    signal w_wordAddr: integer;
-    
 begin
-    w_wordAddr <= to_integer(unsigned(i_addr(6 downto 2)));
-    
     writeProc: process (i_clk)
     begin
-        if rising_edge(i_clk) and w_wordAddr >= 0 and w_wordAddr < c_IMPLEMENTED_POSITIONS then
-            if i_writeEnable = '1' and i_addr(7) = '1' then
-                r_dataMem(w_wordAddr) <= i_writeData;
+        -- check if it's a valid position (implemented)
+        if to_integer(unsigned(i_addr(14 downto 2))) < c_IMPLEMENTED_POSITIONS then
+            if rising_edge(i_clk) and i_writeEnable = '1' and i_addr(15) = '1' then
+                r_dataMem(to_integer(unsigned(i_addr(14 downto 2)))) <= i_writeData;
             end if;
         end if;
     end process writeProc;
     
     readProc: process (i_addr, r_dataMem)
     begin
-        if w_wordAddr >= 0 and w_wordAddr < c_IMPLEMENTED_POSITIONS then
-            if i_addr(7) = '1' then
-                r_outData <= r_dataMem(w_wordAddr);
+        -- check if it's a valid position (implemented)
+        if to_integer(unsigned(i_addr(14 downto 2))) < c_IMPLEMENTED_POSITIONS then
+            if i_addr(15) = '1' then
+                o_readData <= r_dataMem(to_integer(unsigned(i_addr(14 downto 2))));
             else
-                r_outData <= c_instrMem(w_wordAddr);
+                o_readData <= c_instrMem(to_integer(unsigned(i_addr(14 downto 2))));
             end if;
-        else
-            r_outData <= X"00000000";
         end if;
     end process readProc;
-    
-    o_readData <= r_outData;
 end;
