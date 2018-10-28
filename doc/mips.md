@@ -96,6 +96,20 @@ Control | Function
 110     | *A* - *B*
 111     | SLT (*Res* = *A* < *B*)
 
+Inside the control unit there's a finite-state machine, detailed in the diagram below, and a combinational circuit that issues the ALU control signal according to the instruction being executed.
+
+![Multicycle MIPS Finite-State Machine](mips-fsm.png)
+
+ALUOp   | Funct | ALUControl
+--------|-------|---------------
+00      | X     | 010 (add)
+X1      | X     | 110 (subtract)
+1X      | 100000| 010 (add)
+1X      | 100010| 110 (sub)
+1X      | 100100| 000 (and)
+1X      | 100101| 001 (or)
+1X      | 101010| 111 (slt)
+
 ## Test program
 
 The following program is designed to test the processor by using instructions that cover all states from the finite state machine inside the control unit. It uses memory address 0x8000 (32768) as a counter from 0 to 9, by loading it to `$s0`, using `$s1` as increment, storing the increment result on `$s2` and then storing it back on memory if it's less than 10.
