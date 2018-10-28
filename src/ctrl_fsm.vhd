@@ -135,7 +135,7 @@ begin
 
             when s8 =>
                 o_aluSrcA   <= '1';
-                o_aluSrcB   <= "10";
+                o_aluSrcB   <= "00";
                 o_aluOp     <= "01";
                 o_pcSrc     <= "01";
                 o_branch    <= '1';

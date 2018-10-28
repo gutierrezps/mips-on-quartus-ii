@@ -24,11 +24,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="705.86766"
-     inkscape:cy="606.64252"
+     inkscape:zoom="1.4"
+     inkscape:cx="880.86812"
+     inkscape:cy="546.14723"
      inkscape:document-units="px"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="layer5"
      showgrid="false"
      showborder="true"
      inkscape:showpageshadow="true"
@@ -326,7 +326,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1070,7 +1070,7 @@
          x="879.22131"
          y="904.82092"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21px;line-height:101.99999809%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#000000"
-         id="tspan3967-4">ALUSrcB = 10</tspan><tspan
+         id="tspan3967-4">ALUSrcB = 00</tspan><tspan
          sodipodi:role="line"
          x="879.22131"
          y="926.24097"

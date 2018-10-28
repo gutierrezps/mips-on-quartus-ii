@@ -165,7 +165,7 @@ begin
         wait for c_CLOCK_PERIOD;
 
         check_state(s8);
-        assert o_aluSrcA = '1' and o_aluSrcB = "10"
+        assert o_aluSrcA = '1' and o_aluSrcB = "00"
             and o_aluOp = "01" and o_pcSrc = "01"
             report "Mismatch S8 flow output" severity error;
         assert o_irWrite = '0' and o_pcWrite = '0'
