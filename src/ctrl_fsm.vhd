@@ -86,6 +86,20 @@ begin
 
     outputs: process (r_state)
     begin
+        -- initializing all signals to prevent latches
+        o_iOrD      <= '0';
+        o_irWrite   <= '0';
+        o_regDst    <= '0';
+        o_memToReg  <= '0';
+        o_regWrite  <= '0';
+        o_aluSrcA   <= '0';
+        o_aluSrcB   <= "00";
+        o_aluOp     <= "00";
+        o_branch    <= '0';
+        o_pcWrite   <= '0';
+        o_pcSrc     <= "00";
+        o_memWrite  <= '0';
+        
         case r_state is
             when s0 =>
                 o_iOrD      <= '0';

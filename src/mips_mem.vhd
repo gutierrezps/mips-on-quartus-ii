@@ -77,6 +77,8 @@ begin
             else
                 o_readData <= c_instrMem(to_integer(unsigned(i_addr(14 downto 2))));
             end if;
+        else
+            o_readData <= X"00000000";
         end if;
 
         o_data0 <= r_dataMem(0);
