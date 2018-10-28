@@ -30,7 +30,7 @@ architecture rtl of mips_mem is
     
     -- Test program:
     --      addi    $gp, $zero, 32767
-    --      addi    $gp, $zero, 1
+    --      addi    $gp, $gp, 1
     --      addi    $s3, $zero, 10
     --  reset:  sw      $zero, 0($gp)
     --  loop:   lw      $s0, 0($gp)
@@ -41,7 +41,7 @@ architecture rtl of mips_mem is
     --      j       loop
     constant c_instrMem: t_memory := (
         0   => X"201C7FFF",
-        1   => X"201C0001",
+        1   => X"239C0001",
         2   => X"2013000A",
         3   => X"AF800000",
         4   => X"8F900000",

@@ -43,7 +43,7 @@ begin
 
         i_addr <= X"00000004";
         wait for c_TIME_DELTA;
-        assert o_readData = X"201C0001" report "instr mismatch" severity error;
+        assert o_readData = X"239C0001" report "instr mismatch" severity error;
 
         wait for c_TIME_DELTA;
 
