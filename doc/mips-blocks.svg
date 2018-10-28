@@ -11,7 +11,6 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    inkscape:export-ydpi="112.45"
    inkscape:export-xdpi="112.45"
-   inkscape:export-filename="C:\Users\Gutierrez\Desktop\mips-blocks.png"
    sodipodi:docname="mips-blocks.svg"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
    version="1.1"
@@ -373,7 +372,6 @@
     <rect
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        y="405.55347"
        x="586.35974"
        height="459.37915"
@@ -388,13 +386,11 @@
        id="path5806-8"
        d="M 609.33736,829.75734 H 538.10185"
        style="fill:none;stroke:#0075be;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-mid:none;marker-end:url(#marker32875)"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <path
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-mid:none;marker-end:url(#marker12900)"
        d="m 535.83816,811.73291 h 71.23551"
        id="path12890"
@@ -404,7 +400,6 @@
        sodipodi:nodetypes="cccc"
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:connector-curvature="0"
        id="path12756"
        d="m 659.89434,535.71749 v -22.2455 H 131.05426 V 638.0086"
@@ -414,7 +409,6 @@
        d="m 539.14452,471.41498 h 234.90457 v 62.05709"
        id="path5069-1"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"
        sodipodi:nodetypes="ccc" />
@@ -422,7 +416,6 @@
        sodipodi:nodetypes="cc"
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        style="fill:none;stroke:#0075be;stroke-width:2.25305414;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-mid:none;marker-end:url(#marker21339-5-0)"
        d="m 723.2859,775.45088 v 15.43379"
        id="path6108-6"
@@ -432,7 +425,6 @@
        d="M 265.63603,722.64211 H 186.67624"
        id="path3777-4"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"
        sodipodi:nodetypes="cc" />
@@ -441,7 +433,6 @@
        id="path3797-5"
        d="M 268.67577,746.67469 H 189.71599"
        style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mendzs)"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"
        sodipodi:nodetypes="cc" />
@@ -450,7 +441,6 @@
        d="M 268.67577,773.71134 H 189.71599"
        id="path3799-3"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"
        sodipodi:nodetypes="cc" />
@@ -460,7 +450,6 @@
        d="m 609.33736,606.3658 h -70.86"
        id="path5792-2"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <path
@@ -469,7 +458,6 @@
        id="path5794-9"
        d="m 609.33736,623.25516 h -70.86"
        style="fill:none;stroke:#0075be;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-mid:none;marker-end:url(#marker27433)"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <path
@@ -478,14 +466,12 @@
        id="path5790-4"
        d="m 609.33736,589.47643 h -70.86"
        style="fill:none;stroke:#0075be;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-mid:none;marker-end:url(#marker34737)"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <path
        sodipodi:nodetypes="cc"
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        style="fill:none;stroke:#0075be;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-mid:none;marker-end:url(#marker3211)"
        d="m 609.33736,742.81949 h -70.86"
        id="path3174"
@@ -494,7 +480,6 @@
        sodipodi:nodetypes="cc"
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        style="fill:none;stroke:#0075be;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-mid:none;marker-end:url(#marker33803)"
        d="m 609.33736,758.29295 h -70.86"
        id="path3604"
@@ -505,7 +490,6 @@
        d="m 609.33736,640.14451 h -70.86"
        id="path5796-4"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <path
@@ -514,7 +498,6 @@
        id="path5798-4"
        d="m 609.33736,657.0339 h -70.86"
        style="fill:none;stroke:#0075be;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-mid:none;marker-end:url(#marker29223)"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <path
@@ -523,7 +506,6 @@
        d="m 608.96185,707.69474 h -70.86"
        id="path5804-5"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <path
@@ -532,7 +514,6 @@
        d="m 609.33736,673.92323 h -70.86"
        id="path5800-3"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <path
@@ -541,14 +522,12 @@
        id="path5802-7"
        d="m 609.33736,690.81263 h -70.86"
        style="fill:none;stroke:#0075be;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-mid:none;marker-end:url(#marker31037)"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <path
        sodipodi:nodetypes="cc"
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        style="fill:none;stroke:#0075be;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-mid:none;marker-end:url(#marker6052)"
        d="m 609.33736,724.59135 h -70.86"
        id="path3117"
@@ -559,7 +538,6 @@
        id="path5786-1"
        d="M 605.85048,564.17846 H 535.82204"
        style="fill:none;stroke:#000000;stroke-width:2.25305414;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2MstartdT);marker-mid:none;marker-end:none"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <path
@@ -567,7 +545,6 @@
        d="m 212.21086,587.9935 h 55.7177"
        id="path5069"
        inkscape:connector-curvature="0"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"
        sodipodi:nodetypes="cc" />
@@ -580,7 +557,6 @@
        height="329.21515"
        x="267.92856"
        y="535.71747"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <text
@@ -589,7 +565,6 @@
        x="281.4935"
        y="847.5448"
        id="text2987-5"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          sodipodi:role="line"
@@ -601,7 +576,6 @@
        sodipodi:nodetypes="cc"
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:connector-curvature="0"
        id="path3675"
        d="m 212.21086,564.1568 h 56.9925"
@@ -623,7 +597,6 @@
        d="m -267.92857,-555.02941 -7.90455,-4.56369 -7.90455,-4.5637 7.90455,-4.56369 7.90455,-4.5637 0,9.12739 z"
        inkscape:transform-center-x="-2.6348531"
        transform="scale(-1)"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"
        inkscape:transform-center-y="-2.5973427e-006" />
@@ -633,7 +606,6 @@
        x="289.73392"
        y="569.07764"
        id="text3765-94-1"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          sodipodi:role="line"
@@ -649,7 +621,6 @@
        y="554.35931"
        id="text10922"
        transform="rotate(-90)"
-       inkscape:export-filename="/home/gutierrez/Desktop/mips-multicycle.png"
        inkscape:export-xdpi="191.40982"
        inkscape:export-ydpi="191.40982"
        inkscape:transform-center-x="1.5337526e-005"><tspan
@@ -664,7 +635,6 @@
        x="352.13074"
        y="738.37903"
        id="text10320"
-       inkscape:export-filename="/home/gutierrez/Desktop/mips-multicycle.png"
        inkscape:export-xdpi="191.40982"
        inkscape:export-ydpi="191.40982"><tspan
          style="font-size:13.51832485px;line-height:1.25;font-family:sans-serif;stroke-width:1.50203609"
@@ -678,7 +648,6 @@
        x="277.1275"
        y="726.22931"
        id="text3765-94"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          sodipodi:role="line"
@@ -694,7 +663,6 @@
        x="277.1275"
        y="752.1394"
        id="text12414"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          sodipodi:role="line"
@@ -710,7 +678,6 @@
        x="277.1275"
        y="778.0495"
        id="text12417"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          sodipodi:role="line"
@@ -723,7 +690,6 @@
     <text
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        id="text6104"
        y="592.81079"
        x="277.1275"
@@ -740,7 +706,6 @@
        x="531.69147"
        y="567.87817"
        id="text3597"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          style="font-size:13.51832485px;line-height:1.25;stroke-width:1.50203609"
@@ -756,7 +721,6 @@
        x="531.69147"
        y="775.27142"
        id="text3605"
-       inkscape:export-filename="/home/gutierrez/Desktop/mips-multicycle.png"
        inkscape:export-xdpi="191.40982"
        inkscape:export-ydpi="191.40982"><tspan
          style="font-size:13.51832485px;line-height:1.25;stroke-width:1.50203609"
@@ -770,7 +734,6 @@
        x="531.69147"
        y="592.8999"
        id="text3609"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          style="font-size:13.51832485px;line-height:1.25;fill:#0075be;fill-opacity:1;stroke-width:1.50203609"
@@ -784,7 +747,6 @@
        x="531.69147"
        y="609.79785"
        id="text3613"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          style="font-size:13.51832485px;line-height:1.25;fill:#0075be;fill-opacity:1;stroke-width:1.50203609"
@@ -798,7 +760,6 @@
        x="531.69147"
        y="626.69574"
        id="text3617"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          style="font-size:13.51832485px;line-height:1.25;fill:#0075be;fill-opacity:1;stroke-width:1.50203609"
@@ -812,7 +773,6 @@
        x="531.69147"
        y="643.59363"
        id="text3621"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          style="font-size:13.51832485px;line-height:1.25;fill:#0075be;fill-opacity:1;stroke-width:1.50203609"
@@ -826,7 +786,6 @@
        x="531.69147"
        y="660.49158"
        id="text3625"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          style="font-size:13.51832485px;line-height:1.25;fill:#0075be;fill-opacity:1;stroke-width:1.50203609"
@@ -840,7 +799,6 @@
        x="531.69147"
        y="677.38947"
        id="text3629"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          style="font-size:13.51832485px;line-height:1.25;fill:#0075be;fill-opacity:1;stroke-width:1.50203609"
@@ -854,7 +812,6 @@
        x="531.69147"
        y="694.28735"
        id="text3633"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          style="font-size:13.51832485px;line-height:1.25;fill:#0075be;fill-opacity:1;stroke-width:1.50203609"
@@ -868,7 +825,6 @@
        x="531.69147"
        y="711.45349"
        id="text3637"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          style="font-size:13.51832485px;line-height:1.25;fill:#0075be;fill-opacity:1;stroke-width:1.50203609"
@@ -884,7 +840,6 @@
        x="531.69147"
        y="833.50037"
        id="text3641"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          style="font-size:13.51832485px;line-height:1.25;fill:#0075be;fill-opacity:1;stroke-width:1.50203609"
@@ -900,7 +855,6 @@
        x="531.69147"
        y="747.8736"
        id="text3649"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          style="font-size:13.51832485px;line-height:1.25;fill:#0075be;fill-opacity:1;stroke-width:1.50203609"
@@ -911,7 +865,6 @@
     <text
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        id="text3121"
        y="729.64545"
        x="531.69147"
@@ -925,7 +878,6 @@
     <text
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        id="text3178"
        y="762.67584"
        x="531.69147"
@@ -941,7 +893,6 @@
     <text
        inkscape:export-ydpi="191.40982"
        inkscape:export-xdpi="191.40982"
-       inkscape:export-filename="/home/gutierrez/Desktop/mips-multicycle.png"
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:18.02443314px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0075be;fill-opacity:1;stroke:none;stroke-width:1.50203609"
        x="799.14526"
@@ -961,7 +912,6 @@
        height="239.35703"
        x="609.33734"
        y="535.71747"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001" />
     <text
@@ -970,7 +920,6 @@
        x="717.0437"
        style="font-style:normal;font-weight:normal;font-size:18.02443314px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0075be;fill-opacity:1;stroke:none;stroke-width:1.50203609"
        xml:space="preserve"
-       inkscape:export-filename="/home/gutierrez/Desktop/mips-multicycle.png"
        inkscape:export-xdpi="191.40982"
        inkscape:export-ydpi="191.40982"><tspan
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18.66666603px;line-height:100%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans Bold';text-align:center;text-anchor:middle;fill:#0075be;fill-opacity:1;stroke-width:1.50203609"
@@ -986,7 +935,6 @@
     <rect
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        y="793.88873"
        x="609.33734"
        height="53.712769"
@@ -998,7 +946,6 @@
     <text
        inkscape:export-ydpi="191.40982"
        inkscape:export-xdpi="191.40982"
-       inkscape:export-filename="/home/gutierrez/Desktop/mips-multicycle.png"
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:18.02443314px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0075be;fill-opacity:1;stroke:none;stroke-width:1.50203609"
        x="717.44476"
@@ -1012,7 +959,6 @@
     <text
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        id="text10788-3"
        y="768.4054"
        x="753.24207"
@@ -1029,7 +975,6 @@
        sodipodi:nodetypes="cccc"
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:connector-curvature="0"
        id="path3675-4"
        d="m 539.14452,491.66621 h 56.9925 121.31685 v 44.0513"
@@ -1051,7 +996,6 @@
        d="m -586.35976,-482.56771 -7.90455,-4.56369 -7.90455,-4.5637 7.90455,-4.56369 7.90456,-4.5637 0,9.12739 z"
        inkscape:transform-center-x="-2.634865"
        transform="scale(-1)"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"
        inkscape:transform-center-y="-1.2766948e-005" />
@@ -1061,7 +1005,6 @@
        x="703.47498"
        y="568.34296"
        id="text3765-94-1-3"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          sodipodi:role="line"
@@ -1072,7 +1015,6 @@
     <text
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        id="text6104-4"
        y="553.23346"
        x="754.34833"
@@ -1100,14 +1042,12 @@
        d="m -449.29406,-667.93687 -5.26256,-3.03834 -5.26255,-3.03834 5.26255,-3.03834 5.26256,-3.03834 0,6.07668 z"
        inkscape:transform-center-x="5.8213011e-005"
        transform="matrix(0,-1.5020361,1.5020361,0,1729.8465,-139.1384)"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"
        inkscape:transform-center-y="2.6348715" />
     <rect
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        y="638.00861"
        x="-2.2026558"
        height="165.47388"
@@ -1119,7 +1059,6 @@
     <text
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        id="text12715"
        y="714.90375"
        x="91.653656"
@@ -1152,7 +1091,6 @@
        d="m 153.00874,-699.22166 -5.26256,-3.03834 -5.26256,-3.03834 5.26256,-3.03834 5.26256,-3.03834 0,6.07668 z"
        inkscape:transform-center-x="-3.2834877e-005"
        transform="matrix(0,-1.5020361,1.5020361,0,1106.3083,867.83325)"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"
        inkscape:transform-center-y="2.6348583" />
@@ -1162,7 +1100,6 @@
        x="33.482277"
        y="670.22125"
        id="text3765-94-1-3-1"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          sodipodi:role="line"
@@ -1176,7 +1113,6 @@
        x="659.70319"
        y="553.23346"
        id="text12760"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          sodipodi:role="line"
@@ -1192,7 +1128,6 @@
     <text
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        id="text12776"
        y="658.20496"
        x="130.43628"
@@ -1211,7 +1146,6 @@
     <text
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        id="text12896"
        y="815.47595"
        x="531.69147"
@@ -1228,7 +1162,6 @@
        sodipodi:nodetypes="cc"
        inkscape:export-ydpi="259.20001"
        inkscape:export-xdpi="259.20001"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:connector-curvature="0"
        id="path3675-5"
        d="M 46.924701,581.01609 V 638.0086"
@@ -1239,7 +1172,6 @@
        x="126.87926"
        y="777.46149"
        id="text3765-94-7"
-       inkscape:export-filename="D:\Shared\CECI\1 docs\relatorio\img\datapath-block.png"
        inkscape:export-xdpi="259.20001"
        inkscape:export-ydpi="259.20001"><tspan
          sodipodi:role="line"
