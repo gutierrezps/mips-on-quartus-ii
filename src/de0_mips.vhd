@@ -9,6 +9,7 @@ entity de0_mips is
     port (
         i_clk   : in  std_logic;
         i_rst   : in  std_logic;
+        i_fastOrSlow    : in std_logic;
         o_hex0  : out std_logic_vector(0 to 6);
         o_hex2  : out std_logic_vector(0 to 6);
         o_hex3  : out std_logic_vector(0 to 6);
@@ -28,9 +29,13 @@ architecture struct of de0_mips is
     end component;
     
     component clock_divider
-        generic ( g_FACTOR : integer := 50000000 );
+        generic (
+            g_FACTOR_FAST : integer := 50000000;
+            g_FACTOR_SLOW : integer := 6250000
+        );
         port (
             i_clk   : in  std_logic;
+            i_fastOrSlow    : in std_logic;
             o_clk   : out std_logic
         );
     end component;
@@ -59,6 +64,7 @@ begin
 
     clkDiv: clock_divider port map (
         i_clk   => i_clk,
+        i_fastOrSlow => i_fastOrSlow,
         o_clk   => w_clkDiv
     );
 
